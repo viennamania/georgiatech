@@ -616,8 +616,8 @@ export default function Race({socket, username, currentPrice, betPrice}: {socket
 
 <div className="w-full h-8 mt-0"
     style={{
-        //backgroundImage: `url('/cracle-banner.png')`,
-        backgroundImage: `url('/cracle-banner.png')`,
+        //backgroundImage: `url('/banner.png')`,
+        backgroundImage: `url('/banner.png')`,
         backgroundSize: "120px",
         backgroundRepeat: "repeat-x",
         backgroundPosition: `${finishLine ? "0px" : `${fence}%`} 0px`,

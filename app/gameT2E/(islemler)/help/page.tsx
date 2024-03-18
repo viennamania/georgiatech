@@ -570,7 +570,7 @@ export default function Help() {
 
 {/*
             <h3>
-            You Earned {betAmount} $CRA
+            You Earned {betAmount}$GRD
             </h3>
             <h4>
               You Betted {bet}

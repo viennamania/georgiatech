@@ -136,7 +136,7 @@ export default function Loser() {
 
 {/*
             <h3>
-              You Lost {betAmount} $CRA
+              You Lost {betAmount}$GRD
             </h3>
             <h4>
               You Betted {bet}
