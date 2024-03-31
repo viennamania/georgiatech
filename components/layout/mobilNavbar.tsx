@@ -830,7 +830,7 @@ export default function MobilNavbar({user, game} : {user: any, game: any}) {
 
                 {!user &&
                   <div className="flex w-[250px] items-center gap-2 text-white text-sm font-bold">
-                    SONGPA X2E
+                    VIENNA X2E
                   </div>
                 }
 

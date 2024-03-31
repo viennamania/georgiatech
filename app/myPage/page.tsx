@@ -648,7 +648,7 @@ startTime=1611619200000
               ">
 
               <div className="w-full flex flex-col m-5 items-left  gap-0 text-2xl text-white font-bold ">
-                SONGPA X2E Game<b></b>
+                VIENNA X2E Game<b></b>
                 Officially Released!
               </div>
 
@@ -723,7 +723,7 @@ startTime=1611619200000
                 src="/gameT2E.png" width={500} height={500} alt="gameT2E" />
 
               <p className=' text-center w-full text-xs mt-5 text-white'>
-                SONGPA T2E is a Long/Short trading game.<br></br>You can earn more$GRD by winning this game.
+                VIENNA T2E is a Long/Short trading game.<br></br>You can earn more$GRD by winning this game.
               </p>
 
             </div>
@@ -769,7 +769,7 @@ startTime=1611619200000
                 src="/game_horse.gif" width={500} height={500} alt="gameP2E" />
 
               <p className=' text-center w-full text-xs mt-5 '>
-                SONGPA P2E is a Horse Race Game. 
+                VIENNA P2E is a Horse Race Game. 
                 You can earn more$GRD by playing this game.
               </p>
 
@@ -805,7 +805,7 @@ startTime=1611619200000
                 src="/game_poker.gif" width={500} height={500} alt="gameP2E" />
 
               <p className=' text-center w-full text-xs mt-5 '>
-            Play SONGPA Poker Games and Earn CRA.
+            Play VIENNA Poker Games and Earn CRA.
 Place a bet with your tokens based on how strong you think your hand is.
             </p>
 
@@ -845,7 +845,7 @@ Place a bet with your tokens based on how strong you think your hand is.
               <p className='
                 text-center w-full text-xs mt-5
                 '>
-              Get ready for more X2E fun and even bigger rewards with SONGPA!
+              Get ready for more X2E fun and even bigger rewards with VIENNA!
               Stay tuned for new varieties and exciting updates.
             </p>
 
