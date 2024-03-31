@@ -354,7 +354,7 @@ export default function Deposit() {
           <div className="w-full border rounded-lg flex flex-col items-center justify-top  gap-5 p-2 py-5">
 
             <h4 className=" ">
-              Deposit <span className="text-sm text-red-500">(CRA)</span>{" "}
+              Deposit <span className="text-sm text-red-500">(CARROT)</span>{" "}
             </h4>
 
             <div className='w-full max-w-xs  '>
@@ -504,7 +504,7 @@ export default function Deposit() {
           {/* //? Matic Withdraw */}
           <div className="w-full border rounded-lg flex flex-col items-center justify-top gap-5 p-2 py-5">
             <h4 className=" ">
-              Withdraw <span className="text-sm text-red-500">(CRA)</span>
+              Withdraw <span className="text-sm text-red-500">(CARROT)</span>
 
             {/*  
               <span className="text-sm text-green-500">{`(${settings?.requestType === 'Matic' ? "BNB" : Coin.name})`}</span>{" "}
@@ -530,11 +530,11 @@ export default function Deposit() {
 
 
             <span className="ml-5 mr-5 content-center text-sm text-green-500">
-                Withdraw amount is at least <br></br>1,000 ~ maximum 10,000 CRA at a time
+                Withdraw amount is at least <br></br>1,000 ~ maximum 10,000 CARROT at a time
             </span>
 
             <span className="ml-5 mr-5 content-center text-sm text-white">
-                Withdraw Fee 100 CRA
+                Withdraw Fee 100 CARROT
             </span>
  
 
@@ -610,7 +610,7 @@ export default function Deposit() {
 
                 <div className="text-sm">
                     <div className='text-white'>
-                    Requested CRA withdrawal is processed sequentially once a week.
+                    Requested CARROT withdrawal is processed sequentially once a week.
                     </div>
 
                     <br></br>

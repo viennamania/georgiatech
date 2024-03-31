@@ -613,7 +613,7 @@ startTime=1611619200000
                     <div
                         className={`flex items-center justify-center text-base  bg-black rounded-md h-[36px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] mt-3`}
                     >
-                        <span className="text-[#ffffff] text-sm">PRICE (CRA):</span>&nbsp;&nbsp;&nbsp;
+                        <span className="text-[#ffffff] text-sm">PRICE (CARROT):</span>&nbsp;&nbsp;&nbsp;
                         <span className="text-sm">{Number(craUsdt).toFixed(2)}&nbsp;&nbsp;&nbsp;</span>
                         <span className="text-[#ffffff] text-sm">USDT</span>
                     </div>
@@ -805,7 +805,7 @@ startTime=1611619200000
                 src="/game_poker.gif" width={500} height={500} alt="gameP2E" />
 
               <p className=' text-center w-full text-xs mt-5 '>
-            Play VIENNA Poker Games and Earn CRA.
+            Play VIENNA Poker Games and Earn CARROT.
 Place a bet with your tokens based on how strong you think your hand is.
             </p>
 

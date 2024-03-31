@@ -100,7 +100,7 @@ export default function Navbar() {
         //setErr(true);
         //❤️songpalabs❤️
 
-        setSuccessMsg(data.username + ": ❤️" + data.amount + "❤️ CRA");
+        setSuccessMsg(data.username + ": ❤️" + data.amount + "❤️ CARROT");
         setSucc(true);
 
         //setCurrentPrice(data.price);
@@ -491,7 +491,7 @@ export default function Navbar() {
                     />}
 
                     <div className="w-full rounded-lg flex flex-col items-center justify-left p-2 gap-1 ">
-                      <div className='text-xs'>Equity Value (CRA)</div>
+                      <div className='text-xs'>Equity Value (CARROT)</div>
 
                       <div className='text-xl font-extrabold'>
                         {`${Number(user?.deposit).toFixed(0)}`}

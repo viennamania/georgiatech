@@ -441,7 +441,7 @@ export default function WithdrawRequestList() {
             <div className='flex flex-col p-10 mt-0 text-gray-200'>
 
                 <h1 className='font-bold italic text-2xl'>Withdraw Requests{" "}
-                <span className="text-sm text-red-500">(CRA)</span>{" "}
+                <span className="text-sm text-red-500">(CARROT)</span>{" "}
                 </h1>
 
 
@@ -482,7 +482,7 @@ export default function WithdrawRequestList() {
                             }}
                         />
 
-                        <span className='absolute right-20 z-5 text-red-500'>CRA</span>
+                        <span className='absolute right-20 z-5 text-red-500'>CARROT</span>
 
                         <button
                             onClick={() => {
@@ -497,14 +497,14 @@ export default function WithdrawRequestList() {
 
 
                     <div className="ml-5 mr-5 content-center text-sm text-green-500">
-                        Withdraw amount is at least <br></br>1,000 ~ maximum 10,000 <span className="text-red-500">CRA</span> at a time
+                        Withdraw amount is at least <br></br>1,000 ~ maximum 10,000 <span className="text-red-500">CARROT</span> at a time
                     </div>
 
                     <div className="ml-5 mr-5 content-center text-sm text-white">
-                        * Withdraw Fee <span className="text-lg font-bold">100</span> <span className="text-red-500">CRA</span>
+                        * Withdraw Fee <span className="text-lg font-bold">100</span> <span className="text-red-500">CARROT</span>
                     </div>
                     <div className="ml-5 mr-5 content-center text-sm text-white">
-                        Receive Amount <span className="text-lg font-bold">{ miktar === "" || miktar < 1000 ? 0 : miktar - 100 }</span> <span className="text-red-500">CRA</span>
+                        Receive Amount <span className="text-lg font-bold">{ miktar === "" || miktar < 1000 ? 0 : miktar - 100 }</span> <span className="text-red-500">CARROT</span>
                     </div>
 
 
@@ -512,7 +512,7 @@ export default function WithdrawRequestList() {
 
 {/*
                     <span className="ml-5 mr-5 content-center text-sm text-white">
-                        Receive Amount: {miktar - 100} CRA
+                        Receive Amount: {miktar - 100} CARROT
                     </span>
 
                     */}
@@ -624,7 +624,7 @@ export default function WithdrawRequestList() {
 
                 <div className="text-sm">
                     <div className='text-white'>
-                    Requested CRA withdrawal is processed sequentially once a week.
+                    Requested CARROT withdrawal is processed sequentially once a week.
                     </div>
 
                     <br></br>

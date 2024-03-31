@@ -555,7 +555,7 @@ export default function Help() {
             </div>
 
             <div className=" text-sm text-yellow-400">
-            • After press the ‘Place Bet’ button, you should transfer CRA token within 10 sec. <br></br>
+            • After press the ‘Place Bet’ button, you should transfer CARROT token within 10 sec. <br></br>
 
             • Refund is not possible if time is exceeded.<br></br>
 

@@ -22,7 +22,7 @@ export default function GeneralSettings() {
                                 <input type="text" id='coinName' className='input border-white border placeholder:text-gray-500 italic' value='Cracle' />
 
                                 <label htmlFor="coinSymbol" className='mt-5'>Coin Symbol</label>
-                                <input type="text" id='coinSymbol' className='input border-white border placeholder:text-gray-500 italic' value='CRA' />
+                                <input type="text" id='coinSymbol' className='input border-white border placeholder:text-gray-500 italic' value='CARROT' />
 
                                 <label htmlFor="ratio" className='mt-5'>Multiple Ratio</label>
                                 <input type="number" id='ratio' className='input border-white border placeholder:text-gray-500 italic' value={8} />

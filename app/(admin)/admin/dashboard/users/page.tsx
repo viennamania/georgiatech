@@ -98,7 +98,7 @@ export default function UserList() {
     },
     {
       field: "coin",
-      headerName: "Balance (CRA)",
+      headerName: "Balance (CARROT)",
       flex: 0.1,
       minWidth: 100,
       align: "center",
