@@ -648,7 +648,7 @@ startTime=1611619200000
               ">
 
               <div className="w-full flex flex-col m-5 items-left  gap-0 text-2xl text-white font-bold ">
-                VIENNA X2E Game<b></b>
+                VIENNA Game<b></b>
                 Officially Released!
               </div>
 

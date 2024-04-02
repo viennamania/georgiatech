@@ -300,7 +300,7 @@ export default function Navbar() {
 
                     
                     <div className="flex w-[250px] items-center justify-center text-white text-base font-bold">
-                        VIENNA X2E
+                        VIENNA
                     </div>
             
                 </div>

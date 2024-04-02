@@ -605,8 +605,11 @@ startTime=1611619200000
           '>
           */}
 
-          <div className='flex flex-col w-full h-full items-center justify-center relative
-          p-5 bg-black
+          <div className='flex flex-col w-full items-center justify-center relative
+
+            h-[800px]
+
+            p-5 bg-black
           '>
 
 
@@ -633,7 +636,7 @@ startTime=1611619200000
 
 
 
-        {/*
+          {/*
           <div className="
             w-[350px]
             lg:w-[800px]
@@ -656,7 +659,7 @@ startTime=1611619200000
                         ">
 
                         <div className="w-full flex flex-col m-5 items-left  gap-0 text-2xl text-white font-bold ">
-                          VIENNA X2E Game<b></b>
+                          VIENNA Game<b></b>
                           Officially Released!
                         </div>
 
@@ -696,12 +699,12 @@ startTime=1611619200000
                       GAMES
                     </div>
 
-          </div>
-          */}
+            </div>
+            */}
 
 
 
-        <div className="
+          <div className="
           w-[350px] grid grid-cols-2 gap-4 
           md:w-[350px] md:grid-cols-2 
           lg:w-[800px] lg:grid-cols-3 
@@ -716,7 +719,7 @@ startTime=1611619200000
             <span className="
               text-white text-center w-full text-xs font-bold
               lg:text-xl">
-              T2E Game
+              Pasong Game
             </span>
 
             <div className="bg-[#333333] rounded-md p-2 mt-2
@@ -731,7 +734,7 @@ startTime=1611619200000
                 src="/gameT2E.png" width={500} height={500} alt="gameT2E" />
 
               <p className=' text-center w-full text-xs mt-5 text-white'>
-                VIENNA is a Long/Short game.
+                PASONG is a Long and Short game.
               </p>
 
             </div>
@@ -872,7 +875,7 @@ startTime=1611619200000
           */}
 
 
-      </div>
+          </div>
 
 
 
