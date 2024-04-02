@@ -676,7 +676,7 @@ export default function Race({socket, username, currentPrice, betPrice}: {socket
                             opacity: `${selectedSide === "Long" ? 100 : 0}`
                         }}
                         >
-                            {"MY RABBIT"}
+                            {"MY PICK"}
                         </div>
 
                     </div>
@@ -722,7 +722,7 @@ export default function Race({socket, username, currentPrice, betPrice}: {socket
                             opacity: `${selectedSide === "Short" ? 100 : 0}`
                         }}
                         >
-                            {"MY RABBIT"}
+                            {"MY PICK"}
                         </div>
 
                         
