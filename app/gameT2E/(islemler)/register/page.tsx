@@ -312,6 +312,7 @@ export default function RegisterPage() {
                             className="input w-full bg-gray-200 rounded-md"
                         />
 
+                        {/*
                         <label className="label">
                             <span className="label-text">Nick Name:</span>
                         </label>
@@ -320,6 +321,7 @@ export default function RegisterPage() {
                             id="username"
                             className="input w-full bg-gray-200 rounded-md"
                         />
+                        */}
 
                     </div>
                 </div>
