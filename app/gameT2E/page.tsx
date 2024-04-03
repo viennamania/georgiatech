@@ -567,7 +567,7 @@ export default function GameT2E() {
 
       yAxis: [
         {
-          height: "80%"
+          height: "60%"
         },
         {
           top: "80%",
@@ -575,6 +575,10 @@ export default function GameT2E() {
           offset: 0
         }
       ],
+
+      rangeSelector: {
+        selected: 1
+      },
 
       credits: {
         enabled: false
@@ -745,6 +749,7 @@ useEffect(() => {
 
 
 
+  // bg-[#0C0E1A]
 
     
     return (
@@ -754,7 +759,7 @@ useEffect(() => {
 
             {!status ?
                 (
-                    <div className='flex flex-col px-10 pb-10 w-full h-full items-center justify-center gap-5 bg-[#0C0E1A] relative'>
+                    <div className=' bg-[#0C0E1A] flex flex-col px-10 pb-10 w-full h-full items-center justify-center gap-5  relative'>
                         
                         {/*
                         <LatestWinners />
@@ -766,43 +771,35 @@ useEffect(() => {
                         <div className="bg-center bg-no-repeat bg-contain bg-[url(/back.svg)] h-full w-full ">
 
                             <div className=" flex flex-col items-center justify-center
-                              md:gap-5 md:py-3 bg-gradient-radial
+                              md:gap-3 md:py-0 bg-gradient-radial
                               from-transparent via-[#0C0E1A] to-transparent bg-blend-difference
                               h-full md:px-6 mt-2">
-                                {/*
-                                <YuruyenAt time={time} horseSrc={'/at.json'} />
-                                */}
+            
+                                <div className='w-full flex justify-center  '>
 
-{/*
-                               <Image src="/realtime-ticking-stock-chart.gif" width={500} height={500} alt="gameT2E" />
-*/}
+                                  <HighchartsReact
+                                    highcharts = { Highcharts }
+                                    constructorType = { "stockChart" } // { "mapChart" }
+                                    options = { chartOptions }
+                                    ///options={options}
+                                    //containerProps={{ style: { height: "250px", width: "350px" } }}
+                                    //containerProps={{ style: { height: "250px", width: "100%", padding: "1px" } }}
 
+                                    containerProps = {{ className: 'h-[200px] lg:h-[200px] w-full max-w-[650px] m-0 p-[1px] bg-gray-600  ' }}
+                                    //  containerProps = {{ className: 'chartContainer' }}
+                                    immutable = { false }
+                                    allowChartUpdate = { true }
+                                    ///updateArgs = { [true, true, true] }
 
-
-<div className='w-full flex justify-center  '>
-
-<HighchartsReact
-  highcharts = { Highcharts }
-  constructorType = { "stockChart" } // { "mapChart" }
-  options = { chartOptions }
-  ///options={options}
-  //containerProps={{ style: { height: "250px", width: "350px" } }}
-  //containerProps={{ style: { height: "250px", width: "100%", padding: "1px" } }}
-
-  containerProps = {{ className: 'h-[200px] lg:h-[300px] w-full max-w-[650px] m-0 p-[1px] bg-gray-600  ' }}
-  //  containerProps = {{ className: 'chartContainer' }}
-  immutable = { false }
-  allowChartUpdate = { true }
-  ///updateArgs = { [true, true, true] }
-/>
-</div>
+                                  />
+                                </div>
 
 
                                 <div
-                                    className={`  flex items-center justify-center text-base  bg-black rounded-md h-[36px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] mt-3`}
+                                    className={`  flex items-center justify-center text-base  bg-black rounded-md h-14 md:h-20 text-center px-5 text-[#BA8E09] border border-white mt-3`}
                                 >
-                                   <span className="text-[#ffffff] text-sm">PRICE (ETH):</span>&nbsp;&nbsp;&nbsp;
-                                   <span className="text-xl">{Number(currentPrice).toFixed(2)}&nbsp;&nbsp;&nbsp;</span>
+                                   <span className="text-[#ffffff] text-sm">PRICE :</span>&nbsp;&nbsp;&nbsp;
+                                   <span className=" text-3xl md:text-5xl">{Number(currentPrice).toFixed(2)}&nbsp;&nbsp;&nbsp;</span>
                                    <span className="text-[#ffffff] text-sm">USDT</span>
                                 </div>
 
@@ -815,21 +812,24 @@ useEffect(() => {
                         
 
 
-                        <BetInputs
-                          socket={socket}
-                          horse1={horse1Oran}
-                          horse2={horse2Oran}
-                          currenPrice={currentPrice}
-                          setBasePrice={setBasePrice}
-                          setLongShort={setlongShort}
-                          setMyBetAmount={setMyBetAmount}
-                        />
+                        <div className="flex flex-col items-center justify-center gap-5 w-full">
+                          
+                          <BetInputs
+                            socket={socket}
+                            horse1={horse1Oran}
+                            horse2={horse2Oran}
+                            currenPrice={currentPrice}
+                            setBasePrice={setBasePrice}
+                            setLongShort={setlongShort}
+                            setMyBetAmount={setMyBetAmount}
+                          />
 
-                        {/*
-                        <BetTables />
-                            */}
+                          {/*
+                          <BetTables />
+                              */}
 
 
+                        </div>
 
 
                     </div>

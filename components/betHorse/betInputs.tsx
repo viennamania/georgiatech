@@ -541,16 +541,20 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
 
     return (
         <>
-            <div className='flex flex-col items-center justify-center gap-5 w-full lg:w-2/3 '>
+            <div className='flex flex-col items-center justify-center gap-5 w-full lg:w-2/3  '>
+
+
+              <div className=' bg-red-500 rounded-md  p-3 flex flex-col lg:flex-row items-center justify-center gap-5 w-full'>
 
                 {/* //? Input amount manuel */}
                 <div className='flex items-center w-full md:w-1/2 relative'>
 
 
-                    <div className='absolute left-3 z-5'> <FaCoins className='fill-yellow-500' /> </div>
+                  <div className='absolute left-3 z-5'> <FaCoins className='fill-yellow-500' /> </div>
 
 
-                    {user &&
+                    {/*
+                      user &&
                       <button
                         onClick={() => {
                             ////setBetAmount(user?.deposit - 0.00001)
@@ -558,7 +562,7 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
                         }}
                         className=' w-8 btn-circle absolute left-10 z-10 bg-[url(/cion.webp)] bg-contain bg-center bg-no-repeat text-black text-[10px]'> Max
                       </button>
-                    }
+                    */}
                     
                     <input
                       onChange={(e: any) => {
@@ -594,14 +598,17 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
                       type="number"
                       /////placeholder='100~50000 CARROT'
                       placeholder='1~50000 CARROT'
-                      className='input w-full pl-20 text-base'
+
+                      //className='input w-full pl-20 text-base'
+                      className='input w-full lg:w-72 pl-10 text-base'
+
                     />
 
                     <button onClick={() => { setBetAmount(0) }} className='absolute right-5 z-5 btn btn-xs btn-outline border-gray-700'>Clear</button>
                 </div>
 
                 {/* //? Miktar Selector Buttons */}
-                <div className='grid grid-cols-5 content-center md:flex w-full gap-5 items-center justify-center text-xs text-white '>
+                <div className='grid grid-cols-5 content-center md:flex w-full gap-3 items-center justify-center text-xs text-white '>
                     
                     <button
                         onClick={() => {
@@ -642,19 +649,20 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
             
                 </div>
 
+              </div>
 
 
                 {/* //? Horse Select Buttons */}
                 <div className='flex flex-col md:flex-row items-center justify-center w-full md:justify-around gap-3'>
 
                     <button onClick={() => { setSecilenAt(Horses.Horse1) }}
-                        className={`btn hidden md:block border text-center text-xl border-green-500 text-green-500 p-1 bg=[#333541] btn-xl w-80 h-16 ${secilenAt === Horses.Horse1 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
+                        className={`btn hidden md:block border text-center text-xl border-green-500 text-green-500 p-1 bg=[#333541] btn-xl w-72 h-14 ${secilenAt === Horses.Horse1 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
                     >
                         {Horses.Horse1}
                     </button>
 
                     <button onClick={() => { setSecilenAt(Horses.Horse2) }}
-                        className={`btn hidden md:block border text-center text-xl  border-red-500  text-red-500 p-1 bg=[#333541] btn-xl w-80 h-16 ${secilenAt === Horses.Horse2 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
+                        className={`btn hidden md:block border text-center text-xl  border-red-500  text-red-500 p-1 bg=[#333541] btn-xl w-72 h-14 ${secilenAt === Horses.Horse2 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
                     >
                         {Horses.Horse2}
                     </button>
@@ -665,28 +673,28 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
                         
                             //className={`btn border text-center text-xl border-white text-white p-1 bg=[#333541] btn-xl w-28 h-16 ${secilenAt === Horses.Horse1 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
                             
-                            className={`btn border text-center text-xl border-green-500 text-green-500 p-1 bg=[#333541] btn-xl w-28 h-14 ${secilenAt === Horses.Horse1 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
+                            className={`btn border text-center text-xl border-green-500 text-green-500 p-1 bg=[#333541] btn-xl w-14 ${secilenAt === Horses.Horse1 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
                         >
                             {/*
                             {Horses.Horse1} x {horse1}
-                    */}
+                            */}
 
                             {Horses.Horse1}
 
                         </button>
 
-{/*
+                      {/*
                         <Button variant="contained" color="primary" startIcon={<BikeScooter />}>
-      Save
-    </Button>
-                  */}
+                          Save
+                        </Button>
+                       */}
 
                         <button onClick={() => { setSecilenAt(Horses.Horse2) }}
                             className={`btn border text-center text-xl border-red-500  text-red-500 p-1 bg=[#333541] btn-xl w-28 h-14 ${secilenAt === Horses.Horse2 ? "bg=[#333541]" : secilenAt === 0 ? "bg=[#333541]" : "btn-ghost"}`}
                         >
                             {/*
                             {Horses.Horse2} x {horse2}
-                */}
+                          */}
 
                             {Horses.Horse2}
 
@@ -700,7 +708,7 @@ export default function BetInputs({ socket, horse1, horse2, currentPrice, setBas
 
                 
                 
-                <button onClick={placeBet} className='btn btn-success mt-1 w-full'>Place Bet</button>
+                <button onClick={placeBet} className='btn btn-success mt-0 w-full'>Place Bet</button>
 
 
 {/*
