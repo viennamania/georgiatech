@@ -27,6 +27,8 @@ import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
 
 
+
+
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
     props,
     ref
@@ -214,6 +216,14 @@ export default function Navbar() {
     const [showModal, setShowModal] = useState(false);
 
 
+
+
+    const [showModalForDeposit, setShowModalForDeposit] = useState(false);
+
+
+
+
+
     useEffect(() => {
         if (hasCookie("user") && !user) {
 
@@ -364,12 +374,46 @@ export default function Navbar() {
                                 className={`flex flex-row items-center justify-center  bg-black rounded-md h-[36px] text-center px-2 text-[#BA8E09] border border-[#BA8E09] `}
                             >
 
+                                {/*
                                 <Link
                                     className="pr-5 hover:opacity-50"
-                                    href={"/myPage/deposit"}
+                                    href={
+
+                                        "/myPage/deposit"
+                                    
+                                    }
                                 >
                                     <Image src={"/wallet-icon-white.png"} width={20} height={20} alt="logo" />
                                 </Link>
+                                */}
+
+                                {/*
+                                // 
+                                        // http://store.unove.space/Store/depositpopup?storecode=2000001&memberid=test001
+                                        // popup window for deposit
+                                        
+                                */}
+
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    size="small"
+                                    onClick={() => {
+                                        // http://store.unove.space/Store/depositpopup?storecode=2000001&memberid=test001
+                                        // modal window for deposit
+
+                                        ///window.open("http://store.unove.space/Store/depositpopup?storecode=2000001&memberid=test001", "_blank");
+
+
+                                        setShowModalForDeposit(true);
+
+                                        
+                                    }}
+                                >
+                                    <Image src={"/wallet-icon-white.png"} width={20} height={20} alt="logo" />
+                                </Button>
+
+
 
                                 {Number(user?.deposit).toFixed(0)}
                                 
@@ -579,6 +623,16 @@ export default function Navbar() {
 
 
 
+
+
+
+
+
+
+
+
+
+
             <Stack spacing={2} sx={{ width: "100%" }}>
 
               <Snackbar
@@ -616,7 +670,46 @@ export default function Navbar() {
             
             <MobilNavbar user={user} game={game} />
                       
-                    
+
+
+
+
+
+            <Modal
+              
+              show={showModalForDeposit}
+              onClose={() => setShowModalForDeposit(false)}
+                
+            >
+
+
+
+
+            <div className="w-full h-full bg-[#000000]">
+
+
+
+                {/*
+                // http://store.unove.space/Store/depositpopup?storecode=2000001&memberid=test001
+                // iframe for deposit
+                */}
+
+                <iframe
+                    src="http://store.unove.space/Store/depositpopup?storecode=2000001&memberid=test001"
+                    width="100%"
+                    height="100%"
+                    frameBorder="0"
+                    scrolling="no"
+                    title="deposit"
+                ></iframe>
+
+
+            </div>
+
+
+            </Modal>
+
+
 
         </>
     )
