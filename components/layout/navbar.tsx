@@ -876,7 +876,7 @@ export default function Navbar() {
                         {/* USDT -> CARROT */}
                         {/* 1 USDT -> 1000 CARROT */}
 
-                        <div className='text-lg xl:text-xl font-bold'>1 USDT = 1,000 CARROT</div>
+                        <div className='text-lg xl:text-xl font-bold'>1 USDT = 1,392 CARROT</div>
 
                         
 
