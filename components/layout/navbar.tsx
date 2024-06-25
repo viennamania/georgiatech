@@ -289,7 +289,7 @@ export default function Navbar() {
 
 
 
-    const [cryptoPayWalletAddress, setCryptoPayWalletAddress] = useState<any>();
+    const [cryptoPayWalletAddress, setCryptoPayWalletAddress] = useState<any>('');
 
     useEffect(() => {
 
@@ -308,11 +308,15 @@ export default function Navbar() {
                       userid: user?.email,
                     }),
                 });
+
+                if (!res.ok) {
+                    throw new Error("Network response was not ok");
+                }
                   
 
                 const data = await res.json()
 
-                ///console.log("=====navbar getCryptoPayWalletAddress", data);
+                console.log("=====navbar getCryptoPayWalletAddress", data);
 
                 setCryptoPayWalletAddress(data.walletAddress);
 
@@ -331,7 +335,7 @@ export default function Navbar() {
 
 
 
-    ////console.log("cryptoPayWalletAddress==============", cryptoPayWalletAddress);
+    /////console.log("cryptoPayWalletAddress==============", cryptoPayWalletAddress);
 
 
 
@@ -426,10 +430,10 @@ export default function Navbar() {
 
                             {
                             user && <div
-                                className={`flex flex-row items-center justify-center  bg-black rounded-md h-[36px] text-center px-2 text-[#BA8E09] border border-[#BA8E09] `}
+                                className={`flex flex-row items-center justify-center  bg-black rounded-md h-[36px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] `}
                             >
 
-                                
+                                {/*
                                 <Link
                                     className="pr-5 hover:opacity-50"
                                     href={
@@ -440,6 +444,7 @@ export default function Navbar() {
                                 >
                                     <Image src={"/wallet-icon-white.png"} width={20} height={20} alt="logo" />
                                 </Link>
+                                */}
                                 
 
                                 {/*
@@ -471,11 +476,12 @@ export default function Navbar() {
                                 */}
 
 
-
-                                {Number(user?.deposit).toFixed(0)}
+                                <div className="flex flex-row items-center justify-center gap-1 text-sm xl:text-lg">
+                                    {Number(user?.deposit).toFixed(0)}
+                                </div>
                                 
                                 
-                                &nbsp;<span className="text-red-500 text-[8px]">{" "}{Coin.symbol}</span>
+                                <span className="ml-2 text-red-500 text-xs xl:text-sm">{" "}{Coin.symbol}</span>
                                 
 
                             </div>
@@ -731,7 +737,7 @@ export default function Navbar() {
                     </div>
 
                     <>
-                        <div className='mt-10 w-full flex flex-row items-center justify-center centent-center'>
+                        <div className='mt-2 w-full flex flex-row items-center justify-center centent-center'>
 
                         {/*
                             <CC content={user?.walletAddress}/>
@@ -755,7 +761,7 @@ export default function Navbar() {
 
                         </div>
 
-                        <div className='w-full flex flex-row items-center justify-center centent-center'>
+                        <div className='mt-10 w-full flex flex-row items-center justify-center centent-center'>
                             <Canvas
                             text={cryptoPayWalletAddress}
                             options={{
@@ -780,7 +786,7 @@ export default function Navbar() {
                         {/* USDT -> CARROT */}
                         {/* 1 USDT -> 1000 CARROT */}
 
-                        <div className='text-xs xl:text-sm'>1 USDT = 1000 CARROT</div>
+                        <div className='text-lg xl:text-xl font-bold'>1 USDT = 1,000 CARROT</div>
 
                         
 

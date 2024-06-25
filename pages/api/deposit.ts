@@ -88,7 +88,12 @@ export default async function handler(
     // https://corky.vercel.app/api/cryptopay/user/create?userid=abcd1001@gmail.com
 
 
-    const data = await fetch(`https://corky.vercel.app/api/cryptopay/user/create?userid=${userid}`, {
+    //const data = await fetch(`https://corky.vercel.app/api/cryptopay/user/create?userid=${userid}`, {
+
+    // http://store.unove.space/Api/walletAddress?storecode=10001&memberid=creath.park@gmail.com
+
+    const data = await fetch(`http://store.unove.space/Api/walletAddress?storecode=2000001&memberid=${userid}`, {
+
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -98,11 +103,11 @@ export default async function handler(
     const response = await data.json();
     console.log(response);
 
-    if (response.success) {
-      return res.status(200).json({ message: "Success", walletAddress: response.data });
+    if (response?.result === 1) {
+      return res.status(200).json({ message: "Success", walletAddress: response?.data });
     }
 
-    return res.status(400).json({ message: "Action Failed" });
+    return res.status(400).json({ message: "Action Failed", walletAddress: '' });
 
   }
 
