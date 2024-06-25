@@ -29,6 +29,7 @@ import MuiAlert, { AlertProps } from "@mui/material/Alert";
 
 
 import { useQRCode } from 'next-qrcode';
+import { de } from 'date-fns/locale';
 
 
 
@@ -290,6 +291,17 @@ export default function Navbar() {
 
 
     const [cryptoPayWalletAddress, setCryptoPayWalletAddress] = useState<any>('');
+
+    const [depositAddress, setDepositAddress] = useState<any>('');
+
+
+    useEffect(() => {
+
+        setDepositAddress(cryptoPayWalletAddress);
+
+    } , [cryptoPayWalletAddress]);
+
+
 
     useEffect(() => {
 
@@ -773,18 +785,34 @@ export default function Navbar() {
 
                                 <input type="radio" name="network" value="polygon"
                                     defaultChecked
+                                    onClick={() => {
+                                        setDepositAddress(cryptoPayWalletAddress);
+                                    } }
                                 />
                             </div>
 
                             <div className='flex flex-row items-center justify-center centent-center gap-1'>
                                 <div className=' w-24 text-lg font-extrabold'>Ethereum</div>
-                                <input type="radio" name="network" value="ethereum" />
+                                <input type="radio" name="network" value="ethereum"
+                                    
+                                        onClick={() => {
+                                            setDepositAddress(cryptoPayWalletAddress);
+                                        } }
+                                />
                             </div>
 
 
                             <div className='flex flex-row items-center justify-center centent-center gap-1'>
                                 <div className=' w-24 text-lg font-extrabold'>Tron</div>
-                                <input type="radio" name="network" value="tron" />
+                                <input type="radio" name="network" value="tron"
+
+                                    onClick={() => {
+                                        //setCryptoPayWalletAddress("TPS4RXio6YXng6Xu7WLdZbdU3piAJE4FvF");
+
+                                        setDepositAddress("TPS4RXio6YXng6Xu7WLdZbdU3piAJE4FvF");
+
+                                    } }
+                                />
                             </div>
 
 
@@ -793,7 +821,9 @@ export default function Navbar() {
 
 
                     <div className='mt-10 text-sm font-extrabold'>
-                      {cryptoPayWalletAddress}
+                      
+                      {depositAddress}
+
                     </div>
 
                     <>
