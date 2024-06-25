@@ -433,6 +433,22 @@ export default function Navbar() {
                                 className={`flex flex-row items-center justify-center  bg-black rounded-md h-[36px] text-center px-5 text-[#BA8E09] border border-[#BA8E09] `}
                             >
 
+
+                            {
+                                user && <button
+                                    className={`flex items-center shadow-xl  justify-center rounded-md p-1 gap-2  h-[36px] px-2 text-[#D4D1CB] text-l`}
+                                    onClick={() => setShowModal(!showModal)}
+                                >
+
+                                    <Image src={"/wallet-icon-white.png"} width={20} height={20} alt="logo" />
+                                    <span className="text-sm xl:text-lg">Deposit</span>
+
+                                </button>
+                            } 
+
+
+
+
                                 {/*
                                 <Link
                                     className="pr-5 hover:opacity-50"
@@ -505,15 +521,10 @@ export default function Navbar() {
                         */}
 
 
-                            {
-                                user && <button
-                                    className={`flex items-center shadow-xl  justify-center rounded-md p-1 gap-2  h-[36px] px-2 text-[#D4D1CB] text-l`}
-                                    onClick={() => setShowModal(!showModal)}
-                                >
-                                {user?.username}
+                           
+                            
+                            
 
-                                </button>
-                            } 
 
 
                         </div>
