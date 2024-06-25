@@ -756,6 +756,21 @@ export default function Navbar() {
                     <div className='text-sm xl:text-lg'>Deposit Address</div>
 
 
+                    {/*
+                        select network
+                       polygoy
+                       ethereum
+                       tron
+
+                    */}
+
+                    <div className='flex flex-row items-center justify-center centent-center gap-2'>
+                        <div className='text-xs font-extrabold'>Polygon</div>
+                        <div className='text-xs font-extrabold'>Ethereum</div>
+                        <div className='text-xs font-extrabold'>Tron</div>
+                    </div>
+
+
                     <div className='mt-10 text-sm font-extrabold'>
                       {cryptoPayWalletAddress}
                     </div>
