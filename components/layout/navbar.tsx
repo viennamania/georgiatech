@@ -765,9 +765,26 @@ export default function Navbar() {
                     */}
 
                     <div className='flex flex-row items-center justify-center centent-center gap-2'>
-                        <div className='text-xs font-extrabold'>Polygon</div>
-                        <div className='text-xs font-extrabold'>Ethereum</div>
-                        <div className='text-xs font-extrabold'>Tron</div>
+                        <div className='text-xs font-extrabold'>Select Network</div>
+                        <div className='flex flex-col items-center justify-center centent-center gap-1'>
+                            <div className='flex flex-row items-center justify-center centent-center gap-1'>
+                                <div className='text-xs font-extrabold'>Polygon</div>
+                                <input type="radio" name="network" value="polygon" />
+                            </div>
+
+                            <div className='flex flex-row items-center justify-center centent-center gap-1'>
+                                <div className='text-xs font-extrabold'>Ethereum</div>
+                                <input type="radio" name="network" value="ethereum" />
+                            </div>
+
+
+                            <div className='flex flex-row items-center justify-center centent-center gap-1'>
+                                <div className='text-xs font-extrabold'>Tron</div>
+                                <input type="radio" name="network" value="tron" />
+                            </div>
+
+                            
+                        </div>
                     </div>
 
 
