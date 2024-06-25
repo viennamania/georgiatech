@@ -45,7 +45,9 @@ export default function Race({socket, username, currentPrice, betPrice}: {socket
     const [track, setTrack] = useState(0);
     const [horses, setHorses] = useState<any>([]);
     const [winner, setWinner] = useState<any>();
-    const [soundStatus, setSoundStatus] = useState(false);
+    
+    const [soundStatus, setSoundStatus] = useState(true);
+
     const [finishLine, setFinishLine] = useState(false);
 
     /////const [currentPrice, setCurrentPrice] = useState<any>(1682.32);
