@@ -436,7 +436,7 @@ export default function Navbar() {
 
                             {
                                 user && <button
-                                    className={`flex items-center shadow-xl  justify-center rounded-md p-1 gap-2  h-[36px] px-0 text-[#D4D1CB] text-l`}
+                                    className={`flex items-center shadow-xl  justify-center rounded-md  gap-2  h-[36px] px-2 text-[#D4D1CB] text-l`}
                                     onClick={() => setShowModal(!showModal)}
                                 >
 
@@ -497,7 +497,7 @@ export default function Navbar() {
                                 </div>
                                 
                                 
-                                <span className="ml-2 text-red-500 text-xs xl:text-xs">{" "}{Coin.symbol}</span>
+                                <span className="ml-2 text-red-500 text-xs xl:text-xs">{" "}CRT</span>
                                 
 
                             </div>
