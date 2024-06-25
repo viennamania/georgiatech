@@ -765,7 +765,7 @@ export default function Navbar() {
                             <Canvas
                             text={cryptoPayWalletAddress}
                             options={{
-                            level: 'M',
+                            ////level: 'M',
                             margin: 3,
                             scale: 4,
                             width: 200,

@@ -598,7 +598,11 @@ export default function Deposit() {
               className="input input-bordered w-full max-w-xs text-gray-800"
             />
             <div className='absolute right-5 mt-3 z-10 btn btn-xs '>
+
+              {/*
             <CC content={wallet} />
+            */}
+
             </div>
             </div>
 

@@ -507,14 +507,18 @@ export default function DepositRequestList() {
                     {user?.walletAddress &&
                         <>
                             <div className='w-full flex flex-row items-center justify-center centent-center'>
+                                {/*
                                 <CC content={user?.walletAddress}/>
+                                */}
                             </div>
 
                             <div className='w-full flex flex-row items-center justify-center centent-center'>
                                 <Canvas
                                 text={user?.walletAddress}
                                 options={{
-                                level: 'M',
+                                
+                                    //level: 'M',
+                                
                                 margin: 3,
                                 scale: 4,
                                 width: 200,

@@ -529,7 +529,7 @@ export default function DepositRequestList() {
                                 <Canvas
                                 text={user?.walletAddress}
                                 options={{
-                                level: 'M',
+                                ///level: 'M',
                                 margin: 3,
                                 scale: 4,
                                 width: 200,
