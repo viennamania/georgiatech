@@ -61,23 +61,33 @@ export default function Deposit() {
   }
   
   const getSettings = async () => {
-    const res = await fetch(DomainEnum.address + '/api/settings', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        method: "get",
-        API_KEY: process.env.API_KEY,
-      }),
-    });
-    if (!res.ok) {
-      throw new Error('Failed to fetch data');
-    }
-    const data = await res.json();
-    if (data.status === false) {
-      return
-    } else {
-      setSettings(data.settings[0]);
-    }
+
+    try {
+      const res = await fetch(DomainEnum.address + '/api/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          method: "get",
+          API_KEY: process.env.API_KEY,
+        }),
+      });
+
+
+
+      if (!res.ok) {
+        throw new Error('Failed to fetch data');
+      }
+      const data = await res.json();
+      if (data.status === false) {
+        return
+      } else {
+        setSettings(data.settings[0]);
+      }
+
+    } catch (e) {
+      console.log(e);
+    } 
+
   }
 
 

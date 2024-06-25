@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import Image from 'next/image'
 import API from '@/libs/enums/API_KEY';
 import { deleteCookie, getCookie, hasCookie } from 'cookies-next';
@@ -16,7 +16,8 @@ import { HelpCenter } from "@mui/icons-material";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-import Modal from '../../components/Modal';
+///import Modal from '../../components/Modal';
+import Modal from '../../components/ModalPayment';
 
 //@ts-ignore
 import { io } from "socket.io-client";
@@ -25,6 +26,9 @@ import SocketEnum from '@/libs/enums/socket';
 import Stack from "@mui/material/Stack";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
+
+
+import { useQRCode } from 'next-qrcode';
 
 
 
@@ -285,6 +289,57 @@ export default function Navbar() {
 
 
 
+    const [cryptoPayWalletAddress, setCryptoPayWalletAddress] = useState<any>();
+
+    useEffect(() => {
+
+        const getCryptoPayWalletAddress = async () => {
+
+            try {
+
+
+                const res = await fetch("/api/deposit", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                      method: "getCryptopayWalletAddress",
+                      API_KEY: process.env.API_KEY,
+                      userToken: getCookie("user"),
+                      userid: user?.email,
+                    }),
+                });
+                  
+
+                const data = await res.json()
+
+                ///console.log("=====navbar getCryptoPayWalletAddress", data);
+
+                setCryptoPayWalletAddress(data.walletAddress);
+
+            } catch (error) {
+                console.log("=====navbar getCryptoPayWalletAddress error", error);
+            }
+
+        }
+
+        if (user?.email) {
+            getCryptoPayWalletAddress();
+        }
+
+    }, [user?.email]);
+
+
+
+
+    ////console.log("cryptoPayWalletAddress==============", cryptoPayWalletAddress);
+
+
+
+    const [errMsgSnackbar, setErrMsgSnackbar] = useState<String>("");
+    const [successMsgSnackbar, setSuccessMsgSnackbar] = useState<String>("");
+  
+
+    const { Canvas } = useQRCode();
 
 
     return (
@@ -374,7 +429,7 @@ export default function Navbar() {
                                 className={`flex flex-row items-center justify-center  bg-black rounded-md h-[36px] text-center px-2 text-[#BA8E09] border border-[#BA8E09] `}
                             >
 
-                                {/*
+                                
                                 <Link
                                     className="pr-5 hover:opacity-50"
                                     href={
@@ -385,7 +440,7 @@ export default function Navbar() {
                                 >
                                     <Image src={"/wallet-icon-white.png"} width={20} height={20} alt="logo" />
                                 </Link>
-                                */}
+                                
 
                                 {/*
                                 // 
@@ -394,6 +449,7 @@ export default function Navbar() {
                                         
                                 */}
 
+                                {/*
                                 <Button
                                     variant="contained"
                                     color="primary"
@@ -412,6 +468,7 @@ export default function Navbar() {
                                 >
                                     <Image src={"/wallet-icon-white.png"} width={20} height={20} alt="logo" />
                                 </Button>
+                                */}
 
 
 
@@ -464,7 +521,7 @@ export default function Navbar() {
 
 
 
-
+            {/*}
             <Modal
               
               show={showModal}
@@ -621,6 +678,125 @@ export default function Navbar() {
 
             </Modal>
 
+            */}
+
+
+            <Modal
+              
+              show={showModal}
+              onClose={() => setShowModal(false)}
+                
+            >
+
+            <div className="w-full flex flex-row items-center justify-left gap-1 bg-black rounded-lg ">
+
+         
+                  <div
+                    className="w-full text-white text-center justify-center p-2 items-left bg-red-900 flex flex-row"
+                  >
+                    <Image
+                        className='rounded-md'
+                        src={"/cryptopay-logo.png"}
+                        alt="meta-svg"
+                        width={30}
+                        height={30}
+                    />
+                    <h2 className="pl-3 text-left text-xs xl:text-lg">
+                          <span className="text-white">CryptoPay</span>
+                    </h2>
+
+                  </div>
+              
+
+            </div>
+
+
+            <div className='flex flex-col pl-5 pr-3 mt-3 text-gray-200 '>
+
+
+              <div className="w-full rounded-lg flex flex-col items-center justify-center pt-2 gap-1">                                    
+
+
+                {/* Deposit Address and QR Code */}
+
+                <div className="w-full rounded-lg flex flex-col items-center justify-start  gap-1 ">
+
+                  <div className="w-full rounded-lg flex flex-col items-center justify-start p-2 gap-2">
+
+                    <div className='text-sm xl:text-lg'>Deposit Address</div>
+
+
+                    <div className='mt-10 text-sm font-extrabold'>
+                      {cryptoPayWalletAddress}
+                    </div>
+
+                    <>
+                        <div className='mt-10 w-full flex flex-row items-center justify-center centent-center'>
+
+                        {/*
+                            <CC content={user?.walletAddress}/>
+                        */}
+
+
+                            <Button
+                            color="success" variant='contained' className='bg-green-500'
+                            onClick={() =>
+                                {
+                                navigator.clipboard.writeText(cryptoPayWalletAddress);
+                                setSucc(true);
+                                setSuccessMsgSnackbar("Your wallet address copied to clipboard");
+                                }
+                            }
+                        >
+                            Copy
+                        </Button>
+
+                        
+
+                        </div>
+
+                        <div className='w-full flex flex-row items-center justify-center centent-center'>
+                            <Canvas
+                            text={cryptoPayWalletAddress}
+                            options={{
+                            level: 'M',
+                            margin: 3,
+                            scale: 4,
+                            width: 200,
+                            color: {
+                                dark: '#010599FF',
+                                light: '#FFBF60FF',
+                            },
+                            }}
+                            />
+                        </div>
+                    </>
+
+                  </div>
+
+                    <div className="w-full rounded-lg flex flex-col items-center justify-left p-2 gap-1 ">
+                        
+
+                        {/* USDT -> CARROT */}
+                        {/* 1 USDT -> 1000 CARROT */}
+
+                        <div className='text-xs xl:text-sm'>1 USDT = 1000 CARROT</div>
+
+                        
+
+
+                    </div>
+
+
+                </div>
+
+    
+
+              </div>
+
+            </div>
+
+            </Modal>
 
 
 
@@ -633,6 +809,36 @@ export default function Navbar() {
 
 
 
+
+
+            <Stack spacing={2} sx={{ width: "100%" }}>
+        <Snackbar
+          open={succ}
+          autoHideDuration={6000}
+          onClose={handleCloseSucc}
+        >
+          <Alert
+            onClose={handleCloseSucc}
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            {successMsgSnackbar}
+          </Alert>
+        </Snackbar>
+        <Snackbar open={err} autoHideDuration={6000} onClose={handleCloseErr}>
+          <Alert
+            onClose={handleCloseErr}
+            severity="error"
+            sx={{ width: "100%" }}
+          >
+            {errMsgSnackbar}
+          </Alert>
+        </Snackbar>
+      </Stack>
+
+
+
+{/*
             <Stack spacing={2} sx={{ width: "100%" }}>
 
               <Snackbar
@@ -658,7 +864,12 @@ export default function Navbar() {
                       {errMsg}
                   </Alert>
               </Snackbar>
-            </Stack>    
+            </Stack>  
+*/}  
+
+
+
+
 
 
 
@@ -685,7 +896,7 @@ export default function Navbar() {
 
 
 
-            <div className="w-full h-full bg-[#000000]">
+            <div className=" w-64 h-96 bg-[#000000]">
 
 
 

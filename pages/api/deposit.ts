@@ -69,6 +69,45 @@ export default async function handler(
     return res.status(400).json({ message: "Action Failed" });
   }
 
-  if (method === "") {
+  if (method === "getCryptopayWalletAddress") {
+    const { userToken, userid } = req.body;
+
+
+    //console.log("getCryptopayWalletAddress", userToken, userid);
+
+
+
+    if (!userToken || !userid || userid === "") {
+      res.status(400).json({ message: "Bad Request" });
+      return;
+    }
+
+
+  
+    // api call
+    // https://corky.vercel.app/api/cryptopay/user/create?userid=abcd1001@gmail.com
+
+
+    const data = await fetch(`https://corky.vercel.app/api/cryptopay/user/create?userid=${userid}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const response = await data.json();
+    console.log(response);
+
+    if (response.success) {
+      return res.status(200).json({ message: "Success", walletAddress: response.data });
+    }
+
+    return res.status(400).json({ message: "Action Failed" });
+
   }
+
+
+
+
+
 }
