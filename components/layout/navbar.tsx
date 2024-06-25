@@ -436,12 +436,12 @@ export default function Navbar() {
 
                             {
                                 user && <button
-                                    className={`flex items-center shadow-xl  justify-center rounded-md p-1 gap-2  h-[36px] px-2 text-[#D4D1CB] text-l`}
+                                    className={`flex items-center shadow-xl  justify-center rounded-md p-1 gap-2  h-[36px] px-0 text-[#D4D1CB] text-l`}
                                     onClick={() => setShowModal(!showModal)}
                                 >
 
                                     <Image src={"/wallet-icon-white.png"} width={20} height={20} alt="logo" />
-                                    <span className="text-sm xl:text-lg">Deposit</span>
+                                    
 
                                 </button>
                             } 
@@ -497,7 +497,7 @@ export default function Navbar() {
                                 </div>
                                 
                                 
-                                <span className="ml-2 text-red-500 text-xs xl:text-sm">{" "}{Coin.symbol}</span>
+                                <span className="ml-2 text-red-500 text-xs xl:text-xs">{" "}{Coin.symbol}</span>
                                 
 
                             </div>
@@ -521,8 +521,21 @@ export default function Navbar() {
                         */}
 
 
-                           
-                            
+                           {/* logout */}
+                           {user &&
+                            <Button 
+                                    variant="contained"
+                                    color="primary"
+                                    size="small"
+                                    onClick={() => {
+                                        deleteCookie('user');
+                                        getUser();
+                                        router.push('/');
+                                    }}
+                                >
+                                    Logout
+                                </Button>
+                            }
                             
 
 
