@@ -890,6 +890,19 @@ export default function Navbar() {
 
               </div>
 
+
+                <button
+                    className={` w-full pt-3 items-left text-base text-white hover:bg-[#141111] border-t-2 border-green-500 p-1`}
+                      
+                        
+                    onClick={() => {
+                        setShowModal(false), router.push('/myPage/withdrawRequests')
+                    }}
+                >
+                    Withdrawal
+                </button>
+
+
             </div>
 
             </Modal>

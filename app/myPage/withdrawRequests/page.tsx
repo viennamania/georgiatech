@@ -491,16 +491,23 @@ export default function WithdrawRequestList() {
 
 
                     <div className="ml-5 mr-5 content-center text-sm text-green-500">
-                        Withdraw amount is at least <br></br>1,000 ~ maximum 10,000 <span className="text-red-500">CARROT</span> at a time
+                        Withdraw amount is at least <br></br>1,000 ~ maximum 100,000 <span className="text-red-500">CARROT</span> at a time
                     </div>
 
                     <div className="ml-5 mr-5 content-center text-sm text-white">
                         * Withdraw Fee <span className="text-lg font-bold">100</span> <span className="text-red-500">CARROT</span>
                     </div>
                     <div className="ml-5 mr-5 content-center text-sm text-white">
-                        Receive Amount <span className="text-lg font-bold">{ miktar === "" || miktar < 1000 ? 0 : miktar - 100 }</span> <span className="text-red-500">CARROT</span>
+                        Receive Amount <span className="text-lg font-bold">{ miktar === "" || miktar < 1000 ? 0 : miktar - 100 }</span> <span className="text-red-500">USDT</span>
                     </div>
 
+                    {/* swap
+                    1,392 CARROT = 1 USDT
+                    */}
+
+                    <div className="ml-5 mr-5 content-center text-xl font-bold text-white">
+                        * 1,392 CARROT = 1 USDT
+                    </div>
 
 
 
