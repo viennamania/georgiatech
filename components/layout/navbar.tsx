@@ -730,7 +730,7 @@ export default function Navbar() {
                 
             >
 
-            <div className="w-full flex flex-row items-center justify-left gap-1 bg-black rounded-lg ">
+            <div className=" mt-12 w-full flex flex-row items-center justify-left gap-1  rounded-lg ">
 
          
                   <div
