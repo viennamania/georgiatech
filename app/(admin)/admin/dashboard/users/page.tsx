@@ -1,5 +1,7 @@
 'use client';
+
 import { Slide, Chip, Button, Dialog, DialogTitle, DialogContent, DialogContentText, TextField, DialogActions } from '@mui/material';
+
 import { TransitionProps } from '@mui/material/transitions';
 import { GridColDef, GridApi, GridCellValue, DataGrid } from '@mui/x-data-grid';
 import { getCookie } from 'cookies-next';
@@ -199,6 +201,7 @@ export default function UserList() {
       */
 
 
+      /*
       renderCell: (params) => {
 
         const onClick = (e: any) => {
@@ -226,6 +229,7 @@ export default function UserList() {
 
 
         if (user?.email === 'admin') {
+
           return (
             <Button
               //onClick={onClick}
@@ -234,13 +238,16 @@ export default function UserList() {
 
                   console.log("params.row: ", params.row);
 
-                  setSelectedUser(params.row);
-                  handleClickOpen();
+                  //setSelectedUser(params.row);
 
-                 
+
                   setSelectedUserToken(params.row.userToken);
 
-                  setSelectedUser(params.row);
+                  duzenle(params.row);
+
+                  ////handleClickOpen();
+
+     
 
                 }
               }
@@ -252,6 +259,53 @@ export default function UserList() {
         
 
       },
+      */
+
+
+
+
+
+      renderCell: (params) => {
+
+
+        const onClick = (e: any) => {
+
+            e.stopPropagation(); // don't select this row after clicking
+
+            
+            const api: GridApi = params.api;
+            const thisRow: Record<string, GridCellValue> = {};
+
+            api
+                .getAllColumns()
+                .filter((c) => c.field !== "__check__" && !!c)
+                .forEach(
+                    (c) => (thisRow[c.field] = params.getValue(params.id, c.field))
+                );
+
+            
+            
+            return duzenle(params.row);
+            
+
+            
+
+            //setSelectedUser(params.row);
+            //handleClickOpen();
+
+
+        };
+
+        return (
+            <Button color="success" variant='contained' className='bg-green-500' onClick={onClick}>
+                Edit
+            </Button>
+        );
+      },
+
+
+
+
 
 
 
@@ -263,13 +317,22 @@ export default function UserList() {
 
     console.log("duzenle e: ", e);
 
+    setSelectedUserToken(e.userToken);
+
     setSelectedUser(e);
 
-    console.log("selectedUser: ", selectedUser);
+    ////console.log("selectedUser: ", selectedUser);
 
     
     handleClickOpen()
   }
+
+  console.log("selectedUser: ", selectedUser);
+
+
+
+
+
 
 
   const handleClickOpen = () => {
@@ -278,7 +341,7 @@ export default function UserList() {
 
   const handleClose = () => {
 
-    setSelectedUser(null);
+    ///setSelectedUser(null);
 
     setOpen(false);
   };
@@ -444,6 +507,7 @@ export default function UserList() {
 
     }
   })
+
 
 
   return (

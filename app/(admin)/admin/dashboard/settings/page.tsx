@@ -19,7 +19,7 @@ export default function GeneralSettings() {
                             <div className='flex flex-col gap-2'>
 
                                 <label htmlFor="coinName" className=''>Coin Name</label>
-                                <input type="text" id='coinName' className='input border-white border placeholder:text-gray-500 italic' value='Cracle' />
+                                <input type="text" id='coinName' className='input border-white border placeholder:text-gray-500 italic' value='CARROT' />
 
                                 <label htmlFor="coinSymbol" className='mt-5'>Coin Symbol</label>
                                 <input type="text" id='coinSymbol' className='input border-white border placeholder:text-gray-500 italic' value='CARROT' />

@@ -1,10 +1,14 @@
 'use client';
 import { IUser } from "@/libs/interface/user";
-import { getCookie, hasCookie } from "cookies-next";
+import { getCookie, hasCookie, deleteCookie} from "cookies-next";
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { useEffect, useState } from "react";
+
+import { Slide, Chip, Button, Dialog, DialogTitle, DialogContent, DialogContentText, TextField, DialogActions } from '@mui/material';
+
+
 
 export default function RootLayout({
     children,
@@ -80,6 +84,26 @@ export default function RootLayout({
                                 <Link className={`${pathName === '/admin/dashboard/settings' ? 'text-gray-200' : 'text-gray-500'} `} href="/admin/dashboard/settings">
                                     General Settings
                                 </Link>
+
+                                {/* Logout */}
+
+                                <Button 
+                                    variant="contained"
+                                    color="primary"
+                                    size="small"
+                                    onClick={() => {
+                                        deleteCookie('user');
+                                        getUser();
+                                        router.push('/admin');
+                                    }}
+                                >
+                                    Logout
+                                </Button>
+
+                                    
+
+                                    
+
                             </div>
                         </div>
                         <div className={`w-full`}>{children}</div>
