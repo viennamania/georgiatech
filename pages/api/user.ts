@@ -196,9 +196,9 @@ export default async function handler(
       //email,
       //pass1,
       //pass2,
-      //deposit,
+      deposit,
       //img,
-      admin,
+      //admin,
       //newPassToken,
       //maticBalance,
       //walletAddress,
@@ -212,9 +212,11 @@ export default async function handler(
       //email,
       //pass1,
       //pass2,
-      //deposit,
+      deposit,
       //img,
-      admin,
+      
+      //admin,
+
       //newPassToken,
       //maticBalance,
       //walletAddress

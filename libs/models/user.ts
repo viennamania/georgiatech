@@ -163,7 +163,14 @@ export const getUser = async (userToken: string) => {
 };
 
 export const getAllUsers = async () => {
-  const users: IUser[] = (await User.find({ status: true })) as IUser[];
+  
+
+  // order by _id descending
+
+  const users: IUser[] = (
+    await User.find({ status: true }).sort({ _id: -1 })
+  ) as IUser[];
+
   if (users) {
     return { success: true, users };
   } else {
@@ -178,9 +185,9 @@ export const updateUser = async (
   //email: string,
   //pass1: string,
   //pass2: string,
-  //deposit: number,
+  deposit: number,
   //img: string,
-  admin: boolean,
+  ///admin: boolean,
   //newPassToken: string,
   //maticBalance: number,
   //walletAddress: string,
@@ -188,7 +195,9 @@ export const updateUser = async (
 
 
   console.log("updateUser userToken: ", userToken);
-  console.log("updateUser admin: ", admin);
+  //console.log("updateUser admin: ", admin);
+
+  console.log("updateUser deposit: ", deposit);
   
 
   const updatedUser: IUser = (await User.findOneAndUpdate(
@@ -198,9 +207,13 @@ export const updateUser = async (
       //email: email,
       //pass1: pass1,
       //pass2: pass2,
-      //deposit: deposit,
+      
+      deposit: deposit,
+
       //img: img,
-      admin: admin,
+      
+      //admin: admin,
+
       //newPassToken: newPassToken,
       //maticBalance: maticBalance,
       //walletAddress: walletAddress,

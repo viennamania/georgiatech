@@ -107,6 +107,8 @@ export default function UserList() {
         return new Number(params.value).toFixed(2);
       } ,
     },
+
+    /*
     {
       field: "walletAddress",
       headerName: "Deposit Address",
@@ -115,6 +117,7 @@ export default function UserList() {
       align: "center",
       headerAlign: "center",
     },
+    */
 
 
     {
@@ -143,6 +146,7 @@ export default function UserList() {
       width: 125,
 
 
+      /*
       renderCell: (params) => {
 
         const onClick = (e:any) => {
@@ -182,21 +186,19 @@ export default function UserList() {
         };
   
         return (
-          <></>
-
-        /*
+   
           <Button
             color="success" variant='contained' className='bg-green-500'
             onClick={onClick }>Edit
         
           </Button>
-        */
+        
 
         )
       }
+      */
 
 
-/*
       renderCell: (params) => {
 
         const onClick = (e: any) => {
@@ -223,12 +225,24 @@ export default function UserList() {
         };
 
 
-        if (user?.email === 'craclepro@gmail.com') {
+        if (user?.email === 'admin') {
           return (
             <Button
               //onClick={onClick}
               onClick={
-                (e) => { setSelectedUser(params.row); handleClickOpen() }
+                (e) => {
+
+                  console.log("params.row: ", params.row);
+
+                  setSelectedUser(params.row);
+                  handleClickOpen();
+
+                 
+                  setSelectedUserToken(params.row.userToken);
+
+                  setSelectedUser(params.row);
+
+                }
               }
               color="success" variant='contained' className='bg-green-500'>
               Edit
@@ -238,13 +252,10 @@ export default function UserList() {
         
 
       },
-*/
+
 
 
     },
-    
-  
-
 
   ];
 
@@ -266,6 +277,9 @@ export default function UserList() {
   };
 
   const handleClose = () => {
+
+    setSelectedUser(null);
+
     setOpen(false);
   };
 
@@ -290,12 +304,24 @@ export default function UserList() {
   }
 
   const updateUser = async () => {
+
+
+
     //let username = (document.getElementById("username") as HTMLInputElement).value
+    
     //let email = (document.getElementById("email") as HTMLInputElement).value
+    
     //let walletAddress = (document.getElementById("walletAddress") as HTMLInputElement).value
-    //let coinBalance = (document.getElementById("coinBalance") as HTMLInputElement).value
+    
+    let coinBalance = (document.getElementById("coinBalance") as HTMLInputElement).value
+    
     //let maticBalance = (document.getElementById("maticBalance") as HTMLInputElement).value
-    let admin = (document.getElementById("admin") as HTMLInputElement).checked
+
+
+    /////let admin = (document.getElementById("admin") as HTMLInputElement).checked
+
+
+
 
 
     console.log("selectedUser.userToken: ", selectedUser?.userToken)
@@ -310,9 +336,17 @@ export default function UserList() {
       //username: username,
       //email: email,
       //walletAddress: walletAddress,
-      ////deposit: coinBalance,
+      
+      
+      deposit: coinBalance,
+
+
       ////maticBalance: maticBalance,
-      admin: admin,
+      
+      
+      ///admin: admin,
+
+
       //pass1: selectedUser.pass1,
       //pass2: selectedUser.pass2,
       //img: selectedUser.img,
@@ -335,7 +369,11 @@ export default function UserList() {
         })
           .then(res => res.json())
           .then(data => {
-            if (data.user.success) {
+
+            console.log("data: ", data);
+
+
+            if (data?.user?.success) {
               Swal.fire('Saved!', '', 'success')
               getAll()
             } else {
@@ -432,6 +470,8 @@ export default function UserList() {
           </div>
         </div>
 
+
+        {/*
         {selectedUserToken && (
           <Dialog
             open={open}
@@ -460,6 +500,71 @@ export default function UserList() {
             </DialogActions>
           </Dialog>
         )}
+        */}
+
+        {/* update user modal */}
+        {/* update deposit of user modal */}
+
+        {selectedUserToken && (
+          <Dialog
+            open={open}
+            TransitionComponent={Transition}
+            keepMounted
+            onClose={handleClose}
+            aria-describedby="alert-dialog-slide-description"
+          >
+            <DialogTitle> User Edit Form  </DialogTitle>
+            <DialogContent className='space-y-3'>
+
+              <div className='flex gap-1 items-center w-64 p-2 '>
+                <input
+                  type="text"
+                  defaultValue={selectedUser?.username}
+                  id='username'
+                  disabled
+                  className='bg-gray-200 p-2'
+                />
+                <p>Username</p>
+              </div>
+
+              <div className='flex gap-1 items-center w-64 p-2 '>
+                <input
+                  type="text"
+                  defaultValue={selectedUser?.email}
+                  id='email'
+                  disabled
+                  className='bg-gray-200 p-2'
+                />
+                <p>Email</p>
+              </div>
+
+              <div className='flex gap-1 items-center w-64 p-2 '>
+                <input
+                  type="text"
+                  defaultValue={selectedUser?.coin}
+                  id='coinBalance'
+                  className='bg-gray-200 p-2'
+                />
+                <p>Balance</p>
+
+              </div>
+
+            </DialogContent>
+
+            <DialogActions>
+
+              <Button onClick={handleClose}>Close</Button>
+              <Button color='success' onClick={updateUser}>Save</Button>
+
+            </DialogActions>
+
+          </Dialog>
+
+        )}
+
+ 
+                
+
 
 
 
