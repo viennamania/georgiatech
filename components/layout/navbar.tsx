@@ -730,12 +730,12 @@ export default function Navbar() {
                 
             >
 
-            <div className=" mt-12 w-full flex flex-row items-center justify-left gap-1  rounded-lg ">
+            <div className="  w-full flex flex-row items-center justify-left gap-1  rounded-lg ">
 
          
-                  <div
-                    className="w-full text-white text-center justify-center p-2 items-left bg-red-900 flex flex-row"
-                  >
+                <div
+                    className="w-full text-white text-center justify-center p-2 items-left bg-red-900 flex flex-row rounded-t-lg"
+                >
                     <Image
                         className='rounded-md'
                         src={"/cryptopay-logo.png"}
@@ -750,13 +750,16 @@ export default function Navbar() {
                   </div>
               
 
-            </div>
+                </div>
 
 
-            <div className='flex flex-col pl-5 pr-3 mt-3 text-gray-200 '>
+                <div className='flex flex-col pl-5 pr-3 mt-3 text-gray-200 '>
 
 
-              <div className="w-full rounded-lg flex flex-col items-center justify-center pt-2 gap-1">                                    
+
+
+
+                <div className="w-full rounded-lg flex flex-col items-center justify-center pt-2 gap-1">                                    
 
 
                 {/* Deposit Address and QR Code */}
@@ -891,16 +894,17 @@ export default function Navbar() {
               </div>
 
 
-                <button
-                    className={` w-full pt-3 items-left text-base text-white hover:bg-[#141111] border-t-2 border-green-500 p-1`}
+              <button
+                    className={` w-full mt-5 pt-3 items-left text-base text-white hover:bg-[#141111] border-t-2 border-green-500 p-1`}
                       
                         
                     onClick={() => {
                         setShowModal(false), router.push('/myPage/withdrawRequests')
                     }}
                 >
-                    Withdrawal
+                    Withdrawal Requests
                 </button>
+
 
 
             </div>

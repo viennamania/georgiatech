@@ -3,7 +3,7 @@ import { Button, Chip, Dialog, DialogActions, DialogContent, DialogContentText, 
 import { TransitionProps } from '@mui/material/transitions';
 import { GridColDef, GridValueGetterParams, DataGrid, GridApi, GridCellValue } from '@mui/x-data-grid';
 import { getCookie } from 'cookies-next';
-import React, { useEffect, useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import { format } from "date-fns";
 import Link from 'next/link';
 import API from "@/libs/enums/API_KEY";
@@ -67,6 +67,21 @@ export default function WithdrawRequestList() {
 
     const [miktar, setMiktar] = useState<any>("");
 
+    // 1,392 CARROT = 1 USDT
+
+    const [swapRate, setSwapRate] = useState(1392);
+
+
+    const [receiveAmount, setReceiveAmount] = useState(0);
+    useEffect(() => {
+        // 1,392 CARROT = 1 USDT
+
+        // fee 100 CARROT
+
+        setReceiveAmount( parseFloat(Number((parseInt(miktar) - 100) / swapRate ).toFixed(2)) );
+
+    } , [miktar, swapRate]);
+
 
 
 
@@ -82,47 +97,92 @@ export default function WithdrawRequestList() {
 
         {
             field: "requestAmount",
-            headerName: "Request",
+            headerName: "Request (CARROT)",
             align: "right",
             headerAlign: "center",
             type: "number",
             flex: 0.2,
-            minWidth: 90,
-            /*
+            minWidth: 50,
+
             renderCell(params) {
-                return <Chip label={`${params.value}  ${params.row.type}`} color="primary" />;
+                return (
+                    <div className="flex flex-row items-center text-xl">
+                        <p>{Number(params.value).toLocaleString()}</p>
+                    </div>
+                )
             },
-            */
 
         },
         {
             field: "fee",
-            headerName: "Fee",
+            headerName: "Fee (CARROT)",
             align: "right",
             headerAlign: "center",
             type: "number",
             flex: 0.2,
-            minWidth: 60,
-            /*
+            minWidth: 50,
+
             renderCell(params) {
-                return <Chip label={`${params.value}  ${params.row.type}`} color="primary" />;
+                return (
+                    <div className="flex flex-row items-center text-xl">
+                        <p>{Number(params.value).toLocaleString()}</p>
+                    </div>
+                )
             },
-            */
 
         },
         {
             field: "lastAmount",
-            headerName: "Amount",
+            headerName: "Amount (CARROT)",
             align: "right",
             headerAlign: "center",
             type: "number",
             flex: 0.2,
-            minWidth: 90,
-            /*
+            minWidth: 50,
+
+
             renderCell(params) {
-                return <Chip label={`${params.value}  ${params.row.type}`} color="primary" />;
+                return (
+                    <div className="flex flex-row items-center text-xl">
+                        <p>{Number(params.value).toLocaleString()}</p>
+                    </div>
+                )
             },
-            */
+
+
+        },
+        // swapRate
+        {
+            field: "swapRate",
+            headerName: "Swap Rate",
+            align: "center",
+            headerAlign: "center",
+            flex: 0.1,
+            minWidth: 50,
+            renderCell(params) {
+                return (
+                    <div className="flex flex-row items-center text-xl">
+                        <p>{Number(params.value).toLocaleString()}</p>
+                    </div>
+                )
+            },
+        },
+        {
+            field: "receiveAmount",
+            headerName: "Amount (USDT)",
+            align: "right",
+            headerAlign: "center",
+            type: "number",
+            flex: 0.2,
+            minWidth: 50,
+
+            renderCell(params) {
+                return (
+                    <div className="flex flex-row items-center text-xl">
+                        <p>{Number(params.value).toLocaleString()}</p>
+                    </div>
+                )
+            },
 
         },
         {
@@ -300,9 +360,19 @@ export default function WithdrawRequestList() {
             API_KEY: process.env.API_KEY,
             userToken: getCookie("user"),
             email1: user?.email,
+            
             withdrawAmount: miktar,
+
+            swapRate: swapRate,
+
+            receiveAmount: receiveAmount,
+
             walletTo: wallet,
-            type: settings?.requestType
+            
+            //type: settings?.requestType
+
+            type: "Coin",
+
             
             })
         });
@@ -377,6 +447,10 @@ export default function WithdrawRequestList() {
             }),
         })
         const data = await res.json()
+
+        ///console.log(data.payments)
+
+
         setRequests(data.payments)
     }
 
@@ -392,6 +466,8 @@ export default function WithdrawRequestList() {
             id: i,
             email1: item.email1,
             requestAmount: item.withdrawAmount,
+            swapRate: item.swapRate,
+            receiveAmount: item.receiveAmount,
             fee: item.withdrawFee,
             lastAmount: item.withdrawAmount - item.withdrawFee,
             type: item.type,
@@ -434,6 +510,10 @@ export default function WithdrawRequestList() {
 
         setErr(false);
     };
+
+
+
+
 
 
     return (
@@ -498,7 +578,7 @@ export default function WithdrawRequestList() {
                         * Withdraw Fee <span className="text-lg font-bold">100</span> <span className="text-red-500">CARROT</span>
                     </div>
                     <div className="ml-5 mr-5 content-center text-sm text-white">
-                        Receive Amount <span className="text-lg font-bold">{ miktar === "" || miktar < 1000 ? 0 : miktar - 100 }</span> <span className="text-red-500">USDT</span>
+                        Receive Amount <span className="text-lg font-bold">{ miktar === "" || receiveAmount }</span> <span className="text-red-500">USDT</span>
                     </div>
 
                     {/* swap
@@ -506,7 +586,9 @@ export default function WithdrawRequestList() {
                     */}
 
                     <div className="ml-5 mr-5 content-center text-xl font-bold text-white">
-                        * 1,392 CARROT = 1 USDT
+                        * {
+                            Number(swapRate).toLocaleString()
+                        } CARROT = 1 USDT
                     </div>
 
 

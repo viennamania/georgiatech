@@ -23,11 +23,11 @@ export default async function handler(
   }
 
   if (method === "new") {
-    const { userToken, email1, withdrawAmount, walletTo, type } = req.body;
+    const { userToken, email1, withdrawAmount, swapRate, receiveAmount, walletTo, type } = req.body;
 
     console.log(req.body);
 
-    if (!userToken || !email1 || !withdrawAmount || !walletTo || !type) {
+    if (!userToken || !email1 || !withdrawAmount || !swapRate || !receiveAmount || !walletTo || !type) {
       return res
         .status(400)
         .json({ status: false, message: "Missing required fields" });
@@ -63,6 +63,8 @@ export default async function handler(
       userToken,
       email1,
       withdrawAmount,
+      swapRate,
+      receiveAmount,
       withdrawFee,
       walletTo,
       type

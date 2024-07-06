@@ -8,7 +8,7 @@ export default function Footer() {
     return (
         <>
 
-            <div className=" items-center justify-center w-full h-14 bg-black sticky top-0 z-50 
+            <div className=" items-center justify-center w-full h-14 bg-black sticky top-0 z-5 
                 lg:flex
                 ">
 

@@ -1,5 +1,6 @@
 import mongoose, { model, models, Schema } from "mongoose";
 import connectMongo from "../services/database";
+import { swap } from "formik";
 
 connectMongo();
 
@@ -17,6 +18,14 @@ export const paymentRequestSchema = new Schema({
   withdrawAmount: {
     type: Number,
     required: true,
+  },
+  swapRate: {
+    type: Number,
+    required: false,
+  },
+  receiveAmount: {
+    type: Number,
+    required: false,
   },
   withdrawFee: {
     type: Number,
@@ -56,6 +65,8 @@ export const newPaymentRequest = async (
   userToken: string,
   email1: string,
   withdrawAmount: number,
+  swapRate: number,
+  receiveAmount: number,
   withdrawFee: number,
   walletTo: string,
   type: string
@@ -64,6 +75,8 @@ export const newPaymentRequest = async (
     userToken,
     email1,
     withdrawAmount,
+    swapRate,
+    receiveAmount,
     withdrawFee,
     walletTo,
     type,
@@ -84,7 +97,7 @@ export const getPaymentRequest = async (_id: string) => {
 };
 
 export const getAllPaymentRequests = async () => {
-  const requests = await PaymentRequest.find();
+  const requests = await PaymentRequest.find({}).sort({createdAt: -1});
   if (requests) {
     return requests;
   } else {

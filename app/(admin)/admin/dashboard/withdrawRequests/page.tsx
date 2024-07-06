@@ -40,6 +40,7 @@ export default function MaticWithdrawRequestList() {
             align: "center",
             headerAlign: "center",
         },
+        /*
         {
             field: "wallet",
             headerName: "Wallet",
@@ -48,32 +49,137 @@ export default function MaticWithdrawRequestList() {
             align: "center",
             headerAlign: "center",
         },
+        */
         {
             field: "requestAmount",
-            headerName: "Request Amount",
+            headerName: "Request Amount (CARROT)",
             align: "center",
             headerAlign: "center",
             type: "number",
             flex: 0.2,
             minWidth: 120,
             renderCell(params) {
-                return <Chip label={`${params.value}  ${params.row.type}`} color="primary" />;
+                return (
+                    <div className="flex flex-row items-center text-xl">
+                        <p>{Number(params.value).toLocaleString()}</p>
+                    </div>
+                )
             },
 
         },
         {
             field: "withdrawFee",
-            headerName: "Fee",
+            headerName: "Fee (CARROT)",
             align: "center",
             headerAlign: "center",
             type: "number",
             flex: 0.2,
             minWidth: 80,
             renderCell(params) {
-                return <Chip label={`${params.value}  ${params.row.type}`} color="primary" />;
+                return (
+                    <div className="flex flex-row items-center text-xl">
+                        <p>{Number(params.value).toLocaleString()}</p>
+                    </div>
+                )
             },
 
         },
+        {
+            field: "lastAmount",
+            headerName: "Amount (CARROT)",
+            align: "center",
+            headerAlign: "center",
+            type: "number",
+            flex: 0.2,
+            minWidth: 80,
+            renderCell(params) {
+                return (
+                    <div className="flex flex-row items-center text-xl">
+                        <p>{Number(params.value).toLocaleString()}</p>
+                    </div>
+                )
+            },
+        },
+
+        // swapRate: number;
+
+        {
+            field: "swapRate",
+            headerName: "Swap Rate",
+            align: "center",
+            headerAlign: "center",
+            type: "number",
+            flex: 0.2,
+            minWidth: 80,
+            renderCell(params) {
+                return (
+                    <div className="flex flex-row items-center text-xl">
+                        <p>{Number(params.value).toLocaleString()}</p>
+                    </div>
+                )
+            },
+        },
+
+        // receiveAmount: number;
+        {
+            field: "receiveAmount",
+            headerName: "Receive Amount (USDT)",
+            align: "center",
+            headerAlign: "center",
+            type: "number",
+            flex: 0.2,
+            minWidth: 80,
+            renderCell(params) {
+                return (
+                    <div className="flex flex-row items-center text-xl">
+                        <p>{Number(params.value).toLocaleString()}</p>
+                    </div>
+                )
+            },
+        },
+
+        /*
+        {
+            field: "txHash",
+            headerName: "Transaction Hash",
+            align: "center",
+            headerAlign: "center",
+            flex: 0.2,
+            minWidth: 150,
+            renderCell(params) {
+                return <Chip label={params.value} color="primary" />;
+            },
+        },
+        */
+       /*
+        {
+            field: "gonderildi",
+            headerName: "Payment Send",
+            align: "center",
+            headerAlign: "center",
+            flex: 0.1,
+            minWidth: 70,
+            renderCell(params) {
+                return <Chip label={params.value ? "Yes" : "No"} color={params.value ? "success" : "error"} />;
+            },
+        },
+        */
+
+        /*
+        {
+            field: "type",
+            headerName: "Type",
+            align: "center",
+            headerAlign: "center",
+            flex: 0.1,
+            minWidth: 70,
+            renderCell(params) {
+                return <Chip label={params.value} color="primary" />;
+            },
+        },
+        */
+
+
         {
             field: "status",
             headerName: "Status",
@@ -232,6 +338,9 @@ export default function MaticWithdrawRequestList() {
             email1: item.email1,
             requestAmount: item.withdrawAmount,
             withdrawFee: item.withdrawFee,
+            lastAmount: item.withdrawAmount - item.withdrawFee,
+            swapRate: item.swapRate,
+            receiveAmount: item.receiveAmount,
             type: item.type,
             status: item.status,
             wallet: item.walletTo,
