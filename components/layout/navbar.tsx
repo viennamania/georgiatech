@@ -449,7 +449,16 @@ export default function Navbar() {
                             {
                                 user && <button
                                     className={`flex items-center shadow-xl  justify-center rounded-md  gap-2  h-[36px] px-2 text-[#D4D1CB] text-l`}
-                                    onClick={() => setShowModal(!showModal)}
+                                    ///onClick={() => setShowModal(!showModal)}
+
+
+                                    onClick={() => window.open(
+                                        'https://corky.vercel.app/payment?storecode=2000001&memberid='+user?.email,
+                                        '_blank',
+                                        'top=10, left=10, width=420, height=900, status=no, menubar=no, toolbar=no, resizable=no'
+                                      )}
+
+
                                 >
 
                                     <Image src={"/wallet-icon-white.png"} width={20} height={20} alt="logo" />
@@ -534,7 +543,8 @@ export default function Navbar() {
 
 
                            {/* logout */}
-                           {user &&
+                           {user && (
+                            <div className="flex flex-col items-center justify-center gap-1">
                             <Button 
                                     variant="contained"
                                     color="primary"
@@ -547,8 +557,21 @@ export default function Navbar() {
                                 >
                                     Logout
                                 </Button>
-                            }
-                            
+
+                                <Button 
+                                    variant="contained"
+                                    color="primary"
+                                    size="small"
+                                    onClick={() => {
+                                        router.push('/myPage/withdrawRequests');
+                                    }}
+                                >
+                                    Withdraw
+                                </Button>
+
+
+                            </div>
+                            )}
 
 
 
