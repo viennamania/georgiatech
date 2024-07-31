@@ -388,6 +388,7 @@ export default function Navbar() {
     */
 
     const getOrders = async () => {
+
         const res = await fetch('/api/depositRequests', {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
@@ -912,7 +913,9 @@ export default function Navbar() {
                         <div className="flex flex-row items-center justify-center gap-3">
 
                             <button
-                                className="flex items-center justify-center rounded-md bg-[#BA8E09] text-white text-lg font-bold h-[50px] w-[100px]"
+                                disabled={krwAmount === 0 || localMobileNumber === ""}
+                                className={`flex items-center justify-center rounded-md bg-[#BA8E09] text-white text-lg font-bold h-[50px] w-[100px]
+                                    ${krwAmount === 0 || localMobileNumber === "" ? "opacity-50" : ""}`}
                                 onClick={() => {
                                     setShowModal(false);
                                     getOrders();

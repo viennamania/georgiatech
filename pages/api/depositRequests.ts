@@ -277,6 +277,8 @@ export default async function handler(
  
     */
 
+    //console.log(orders);
+
     if (!orders) {
       return res.status(200).json({
         status: false,
@@ -284,11 +286,24 @@ export default async function handler(
       });
     }
 
-    // find one krwAmount is 10000
+    // find one krwAmount is 10000 and status is open
 
-    const order = orders.find((order : any) => order.krwAmount === krwAmount);
+    //const order = orders.find((order : any) => order.krwAmount === krwAmount);
+
+    const order = orders.find((order : any) => order.krwAmount === krwAmount && order.status === "ordered");
 
   
+    //console.log(order);
+
+
+
+    if (!order) {
+      return res.status(200).json({
+        status: false,
+        message: "acceptOrder request failed",
+      });
+    }
+
     ///console.log(order);
 
 
