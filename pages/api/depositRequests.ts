@@ -236,8 +236,12 @@ export default async function handler(
 
   if (method === "acceptOrder") {
 
-    const { _id } = req.body;
+  
+    
+    //krwAmount: krwAmount,
+    //smsMobileNumber: localMobileNumber,
 
+    const {krwAmount, smsMobileNumber } = req.body;
 
 
     ///const deposit = await getDepositRequest(_id);
@@ -282,7 +286,7 @@ export default async function handler(
 
     // find one krwAmount is 10000
 
-    const order = orders.find((order : any) => order.krwAmount === 10000);
+    const order = orders.find((order : any) => order.krwAmount === krwAmount);
 
   
     ///console.log(order);
@@ -306,7 +310,7 @@ export default async function handler(
     const buyerNickname = "vienna";
     const buyerAvatar = "https://vzrcy5vcsuuocnf3.public.blob.vercel-storage.com/3Ntag4p-fQst7JyMl3CbrwFYT3ouLYeeqjLJw6.jpeg";
 
-    const buyerMobile = "+8201098551647";
+    const buyerMobile = smsMobileNumber;
 
 
     try {

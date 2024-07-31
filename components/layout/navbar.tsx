@@ -365,6 +365,14 @@ export default function Navbar() {
     const [showModal, setShowModal] = useState(false);
 
     const [krwAmount, setKrwAmount] = useState(0);
+
+    const [isKrwAmount10000, setIsKrwAmount10000] = useState(false);
+    const [isKrwAmount20000, setIsKrwAmount20000] = useState(false);
+    const [isKrwAmount30000, setIsKrwAmount30000] = useState(false);
+    const [isKrwAmount40000, setIsKrwAmount40000] = useState(false);
+    const [isKrwAmount50000, setIsKrwAmount50000] = useState(false);
+
+
     const [localMobileNumber, setLocalMobileNumber] = useState("");
 
     const selectAmount = async () => {
@@ -386,7 +394,9 @@ export default function Navbar() {
             body: JSON.stringify({
                 method: "acceptOrder",
                 API_KEY: process.env.API_KEY,
-                userToken: getCookie("user")
+                userToken: getCookie("user"),
+                krwAmount: krwAmount,
+                smsMobileNumber: '+82' + localMobileNumber,
             }),
         })
         const data = await res.json();
@@ -872,6 +882,8 @@ export default function Navbar() {
 
 
                         </div>
+                        {/* selected krwAmount */}
+                        <div className="mt-10 text-white text-xl font-bold">Selected Amount: {krwAmount}</div>
 
                         <div className="mt-5 text-white text-lg font-bold">Input Mobile Number</div>
 
