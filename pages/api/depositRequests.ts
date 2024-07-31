@@ -8,6 +8,7 @@ import {
 } from "@/libs/models/depositRequest";
 import { User } from "@/libs/models/user";
 import { NextApiRequest, NextApiResponse } from "next";
+import { use } from "react";
 
 export default async function handler(
   req: NextApiRequest,
@@ -241,7 +242,7 @@ export default async function handler(
     //krwAmount: krwAmount,
     //smsMobileNumber: localMobileNumber,
 
-    const {krwAmount, smsMobileNumber } = req.body;
+    const {userToken, krwAmount, smsMobileNumber } = req.body;
 
 
     ///const deposit = await getDepositRequest(_id);
@@ -259,7 +260,7 @@ export default async function handler(
 
     const data = await response.json();
 
-    ///console.log(data);
+    //console.log(data);
 
  
 
@@ -341,7 +342,8 @@ export default async function handler(
           buyerWalletAddress: buyerWalletAddress,
           buyerNickname: buyerNickname,
           buyerAvatar: buyerAvatar,
-          buyerMobile: buyerMobile
+          buyerMobile: buyerMobile,
+          buyerMemo: userToken,
         }),
 
       });
