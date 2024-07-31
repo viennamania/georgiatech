@@ -203,7 +203,7 @@ export default function Navbar() {
         })
         const data = await res.json();
 
-        console.log("=====navbar getUser", data);
+        //console.log("=====navbar getUser", data);
 
         setUser(data?.user?.user);
 
@@ -263,7 +263,7 @@ export default function Navbar() {
             })
             const data = await res.json()
     
-            console.log("=====navbar getGame", data);
+            ////console.log("=====navbar getGame", data);
 
             setGame(data.game)
 
@@ -356,6 +356,131 @@ export default function Navbar() {
   
 
     const { Canvas } = useQRCode();
+
+
+
+       /*
+    curl -X POST https://next.unove.space/api/order/getAllSellOrdersForBuyer -H "Content-Type: application/json" -d '{"walletAddress": "0x06F453c78592bC1c8A18A4B0bB06d10eE9D90345", "searchMyTrades": true}'
+    */
+
+    const getOrders = async () => {
+        const res = await fetch('/api/depositRequests', {
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                method: "acceptOrder",
+                API_KEY: process.env.API_KEY,
+                userToken: getCookie("user")
+            }),
+        })
+        const data = await res.json();
+
+        console.log("acceptOrder", data);
+        /*
+        {
+    "_id": "66aa0ee127e684b0d476c154",
+    "walletAddress": "0x06F453c78592bC1c8A18A4B0bB06d10eE9D90345",
+    "nickname": "bello",
+    "mobile": "+8201053481647",
+    "avatar": "https://vzrcy5vcsuuocnf3.public.blob.vercel-storage.com/bKsv0xx-i5gCYHsETPQ9VsOLzkQGV5bzVS39o5.png",
+    "seller": {
+        "status": "confirmed",
+        "bankInfo": {
+            "bankName": "카카오뱅크",
+            "accountNumber": "234242234",
+            "accountHolder": "김범수"
+        }
+    },
+    "usdtAmount": 7.1279,
+    "krwAmount": 10000,
+    "rate": 1403,
+    "createdAt": "2024-07-31T10:16:01.053Z",
+    "status": "accepted",
+    "privateSale": false,
+    "acceptedAt": "2024-07-31T11:01:31.555Z",
+    "buyer": {
+        "walletAddress": "0x06F453c78592bC1c8A18A4B0bB06d10eE9D90345",
+        "nickname": "vienna",
+        "avatar": "https://vzrcy5vcsuuocnf3.public.blob.vercel-storage.com/3Ntag4p-fQst7JyMl3CbrwFYT3ouLYeeqjLJw6.jpeg",
+        "mobile": "+8201098551647"
+    },
+    "tradeId": "415237"
+}
+        */
+
+        if (data.status === false) {
+            setErrMsgSnackbar(data.message);
+            setErr(true);
+        } else {
+
+            const orderId = data.order._id;
+
+            const url = "https://next.unove.space/kr/sell-usdt/" + orderId;
+
+            console.log("url", url);
+
+            window.open(
+                url,
+                '_blank',
+                'top=10, left=10, width=420, height=900, status=no, menubar=no, toolbar=no, resizable=no'
+            )
+
+            /*
+            window.open(
+                'https://corky.vercel.app/payment?storecode=2000001&memberid='+user?.email,
+                '_blank',
+                'top=10, left=10, width=420, height=900, status=no, menubar=no, toolbar=no, resizable=no'
+                )
+            */
+
+        }
+
+
+
+
+
+        ///console.log("deposits=>", data.deposits, "user=>", getCookie("user")  );
+
+        ///setRequests(data.deposits)
+    }
+
+
+
+
+ 
+
+    const getOrders2 = async () => {
+
+        const sellerWalletAddress = '0x06F453c78592bC1c8A18A4B0bB06d10eE9D90345';
+            
+        try {
+
+            const res = await fetch("https://next.unove.space/api/order/getAllSellOrdersForBuyer", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    walletAddress: sellerWalletAddress,
+                    searchMyTrades: true,
+                }),
+            })
+
+            const data = await res.json();
+
+            console.log("getAllSellOrdersForBuyer", data);
+
+            window.open(
+                'https://corky.vercel.app/payment?storecode=2000001&memberid='+user?.email,
+                '_blank',
+                'top=10, left=10, width=420, height=900, status=no, menubar=no, toolbar=no, resizable=no'
+                )
+
+        } catch (error) {
+            console.error("Error:", error);
+        }
+
+    } 
+
+
 
 
     return (
@@ -452,11 +577,96 @@ export default function Navbar() {
                                     ///onClick={() => setShowModal(!showModal)}
 
 
-                                    onClick={() => window.open(
-                                        'https://corky.vercel.app/payment?storecode=2000001&memberid='+user?.email,
-                                        '_blank',
-                                        'top=10, left=10, width=420, height=900, status=no, menubar=no, toolbar=no, resizable=no'
-                                      )}
+                                    onClick={() => (
+
+                                        ///console.log("user?.walletAddress", user?.walletAddress),
+
+                                        getOrders()
+
+
+
+
+
+                                        /*
+                                        curl -X POST https://next.unove.space/api/order/getAllSellOrdersForBuyer -H "Content-Type: application/json" -d '{"walletAddress": "0x06F453c78592bC1c8A18A4B0bB06d10eE9D90345", "searchMyTrades": true}'
+                                        */
+
+                                        // fetch all sell orders for buyer from url below
+                                        // https://next.unove.space/api/order/getAllSellOrdersForBuyer
+
+                                        ///const getAllSellOrdersForBuyer = async () => {
+
+                                            /*
+                                            fetch("https://next.unove.space/api/order/getAllSellOrdersForBuyer", {
+                                                method: "POST",
+                                                headers: { "Content-Type": "application/json" },
+                                                body: JSON.stringify({
+                                                    walletAddress: user?.walletAddress,
+                                                    searchMyTrades: true,
+                                                }),
+                                            })
+                                            .then((data) => {
+                                                console.log("getAllSellOrdersForBuyer", data);
+                                            } )
+                                            .catch((error) => {
+                                                console.error("Error:", error);
+                                            } ) 
+                                            */
+
+                                        ///}
+
+
+
+
+
+                                                /*
+                                                
+                                                const res = await fetch("https://next.unove.space/api/order/getAllSellOrdersForBuyer", {
+                                                    method: "POST",
+                                                    headers: { "Content-Type": "application/json" },
+                                                    body: JSON.stringify({
+                                                        walletAddress: user?.walletAddress,
+                                                        searchMyTrades: true,
+                                                    }),
+                                                })
+
+                                                const data = await res.json();
+
+                                                console.log("getAllSellOrdersForBuyer", data);
+                                                */
+
+                                                /*
+                                                .then((data) => {
+                                                    console.log("getAllSellOrdersForBuyer", data);
+
+
+
+                                                    window.open(
+                                                        'https://corky.vercel.app/payment?storecode=2000001&memberid='+user?.email,
+                                                        '_blank',
+                                                        'top=10, left=10, width=420, height=900, status=no, menubar=no, toolbar=no, resizable=no'
+                                                        )
+
+
+                                                })
+                                                .catch((error) => {
+                                                    console.error("Error:", error);
+                                                });
+                                                */
+                                                
+                                        
+
+
+
+
+
+
+
+
+
+
+                                    )}
+                                    
 
 
                                 >

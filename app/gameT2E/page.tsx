@@ -730,7 +730,7 @@ useEffect(() => {
         })
         const data = await res.json()
 
-        console.log("=====navbar getGame", data);
+        ///console.log("=====navbar getGame", data);
 
         if (data.game) {
           setStatus(true);
