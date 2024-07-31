@@ -441,7 +441,7 @@ export default function Navbar() {
 
             const orderId = data.order._id;
 
-            const url = "https://next.unove.space/kr/sell-usdt/" + orderId;
+            const url = "https://next.unove.space/kr/pay-usdt/" + orderId;
 
             console.log("url", url);
 
