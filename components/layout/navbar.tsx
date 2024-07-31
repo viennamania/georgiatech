@@ -16,8 +16,6 @@ import { HelpCenter } from "@mui/icons-material";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
-///import Modal from '../../components/Modal';
-import Modal from '../../components/ModalPayment';
 
 //@ts-ignore
 import { io } from "socket.io-client";
@@ -31,7 +29,9 @@ import MuiAlert, { AlertProps } from "@mui/material/Alert";
 import { useQRCode } from 'next-qrcode';
 import { de } from 'date-fns/locale';
 
+//import Modal from '../../components/Modal';
 
+import Modal from '@/components/ModalPayment';
 
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
@@ -218,8 +218,6 @@ export default function Navbar() {
 
     const [game, setGame] = useState<any>();
 
-    const [showModal, setShowModal] = useState(false);
-
 
 
 
@@ -358,6 +356,24 @@ export default function Navbar() {
     const { Canvas } = useQRCode();
 
 
+
+    // acceptOrder
+    // open popup modal window for selecting krwAmount 10000, 20000, 50000, 100000, 200000, 500000
+    // and input mobile number
+    // if select krwAmount and input mobile number, then open popup window for payment
+
+    const [showModal, setShowModal] = useState(false);
+
+    const [krwAmount, setKrwAmount] = useState(0);
+    const [localMobileNumber, setLocalMobileNumber] = useState("");
+
+    const selectAmount = async () => {
+
+        // show modal window for selecting krwAmount and input mobile number
+
+        setShowModal(true);
+
+    }
 
        /*
     curl -X POST https://next.unove.space/api/order/getAllSellOrdersForBuyer -H "Content-Type: application/json" -d '{"walletAddress": "0x06F453c78592bC1c8A18A4B0bB06d10eE9D90345", "searchMyTrades": true}'
@@ -581,7 +597,7 @@ export default function Navbar() {
 
                                         ///console.log("user?.walletAddress", user?.walletAddress),
 
-                                        getOrders()
+                                        selectAmount()
 
 
 
@@ -795,8 +811,123 @@ export default function Navbar() {
             </div>
 
 
+            {/* Modal for selecting krwAmount and input mobile number
 
-            {/*}
+                // open popup modal window for selecting krwAmount 10000, 20000, 50000, 100000, 200000, 500000
+                // and input mobile number
+                // if select krwAmount and input mobile number, then open popup window for payment
+            
+            */}
+
+        
+            <Modal
+                
+                show={showModal}
+                onClose={() => setShowModal(false)} 
+
+            >
+
+                <div className=" pt-28 pr-20 w-full h-[800px] bg-gray-900 rounded-lg">
+
+                    <div className="flex flex-col items-center justify-center gap-3">
+
+                        <div className="text-white text-lg font-bold">Select Amount</div>
+
+                        <div className="grid grid-cols-3 gap-3">
+
+                            <button
+                                className="flex items-center justify-center rounded-md bg-[#BA8E09] text-white text-lg font-bold h-[50px] w-[100px]"
+                                onClick={() => setKrwAmount(10000)}
+                            >
+                                10,000
+                            </button>
+
+                            <button
+                                className="flex items-center justify-center rounded-md bg-[#BA8E09] text-white text-lg font-bold h-[50px] w-[100px]"
+                                onClick={() => setKrwAmount(20000)}
+                            >
+                                20,000
+                            </button>
+
+                            <button
+                                className="flex items-center justify-center rounded-md bg-[#BA8E09] text-white text-lg font-bold h-[50px] w-[100px]"
+                                onClick={() => setKrwAmount(30000)}
+                            >
+                                30,000
+                            </button>
+
+                            <button
+                                className="flex items-center justify-center rounded-md bg-[#BA8E09] text-white text-lg font-bold h-[50px] w-[100px]"
+                                onClick={() => setKrwAmount(40000)}
+                            >
+                                40,000
+                            </button>
+
+                            <button
+                                className="flex items-center justify-center rounded-md bg-[#BA8E09] text-white text-lg font-bold h-[50px] w-[100px]"
+                                onClick={() => setKrwAmount(50000)}
+                            >
+                                50,000
+                            </button>
+
+
+                        </div>
+
+                        <div className="mt-5 text-white text-lg font-bold">Input Mobile Number</div>
+
+                        <div className='flex flex-row items-center justify-center gap-3'>
+
+                        <span
+                            className="text-white text-lg font-bold"
+                        >+82</span>
+
+                        <input
+                            type="number"
+                            className="w-[250px] h-[50px] rounded-md bg-black text-white text-lg font-bold"
+                            placeholder="Mobile Number"
+                            value={localMobileNumber}
+                            onChange={(e) => (
+                                
+                                setLocalMobileNumber(e.target.value)
+                                // prefix +82
+
+                                //setMobileNumber("+82" + e.target.value)
+
+                            )}
+                        />
+                        </div>
+
+                        <div className="flex flex-row items-center justify-center gap-3">
+
+                            <button
+                                className="flex items-center justify-center rounded-md bg-[#BA8E09] text-white text-lg font-bold h-[50px] w-[100px]"
+                                onClick={() => {
+                                    setShowModal(false);
+                                    getOrders();
+                                }}
+                            >
+                                OK
+                            </button>
+
+                            <button
+                                className="flex items-center justify-center rounded-md bg-[#BA8E09] text-white text-lg font-bold h-[50px] w-[100px]"
+                                onClick={() => setShowModal(false)}
+                            >
+                                Cancel
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </Modal>
+
+
+
+            {/*
             <Modal
               
               show={showModal}
@@ -952,10 +1083,11 @@ export default function Navbar() {
             </div>
 
             </Modal>
-
             */}
 
+            
 
+            {/*}
             <Modal
               
               show={showModal}
@@ -995,7 +1127,6 @@ export default function Navbar() {
                 <div className="w-full rounded-lg flex flex-col items-center justify-center pt-2 gap-1">                                    
 
 
-                {/* Deposit Address and QR Code */}
 
                 <div className="w-full rounded-lg flex flex-col items-center justify-start  gap-1 ">
 
@@ -1004,13 +1135,6 @@ export default function Navbar() {
                     <div className='text-sm xl:text-lg'>Deposit Address</div>
 
 
-                    {/*
-                        select network
-                       polygoy
-                       ethereum
-                       tron
-
-                    */}
 
                     <div className='flex flex-row items-center justify-center centent-center gap-2'>
                         <div className='text-xs font-extrabold'>Select Network</div>
@@ -1065,10 +1189,7 @@ export default function Navbar() {
                     <>
                         <div className='mt-2 w-full flex flex-row items-center justify-center centent-center'>
 
-                        {/*
-                            <CC content={user?.walletAddress}/>
-                        */}
-
+         
 
                             <Button
                             color="success" variant='contained' className='bg-green-500'
@@ -1107,11 +1228,7 @@ export default function Navbar() {
                   </div>
 
                     <div className="w-full rounded-lg flex flex-col items-center justify-left p-2 gap-1 ">
-                        
-
-                        {/* USDT -> CARROT */}
-                        {/* 1 USDT -> 1000 CARROT */}
-
+  
                         <div className='text-lg xl:text-xl font-bold'>1 USDT = 1,392 CARROT</div>
 
                         
@@ -1143,6 +1260,8 @@ export default function Navbar() {
             </div>
 
             </Modal>
+
+            */}
 
 
 
