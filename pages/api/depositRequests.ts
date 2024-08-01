@@ -328,10 +328,17 @@ export default async function handler(
 
     */
 
+    /*
     const buyerWalletAddress = "0x06F453c78592bC1c8A18A4B0bB06d10eE9D90345";
     const buyerNickname = "vienna";
     const buyerAvatar = "https://vzrcy5vcsuuocnf3.public.blob.vercel-storage.com/3Ntag4p-fQst7JyMl3CbrwFYT3ouLYeeqjLJw6.jpeg";
 
+    const buyerMobile = smsMobileNumber;
+    */
+
+    const buyerWalletAddress = "0x630a9a06d94B2Bae290211B3a2c2a4FA1FdDd002";
+    const buyerNickname = "spiderman";
+    const buyerAvatar = "https://vzrcy5vcsuuocnf3.public.blob.vercel-storage.com/I5GmPhb-8QVXB7uzmyglxQPyVF2DLgYVLXwUOy.jpeg";
     const buyerMobile = smsMobileNumber;
 
 
