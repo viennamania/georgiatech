@@ -510,6 +510,7 @@ export default function Navbar() {
     } 
 
 
+    const [agreement, setAgreement] = useState(false);
 
 
     return (
@@ -892,32 +893,62 @@ export default function Navbar() {
 
                         <div className='flex flex-row items-center justify-center gap-3'>
 
-                        <span
-                            className="text-white text-lg font-bold"
-                        >+82</span>
+                            <span
+                                className="text-white text-lg font-bold"
+                            >+82</span>
 
-                        <input
-                            type="number"
-                            className="w-[250px] h-[50px] rounded-md bg-black text-white text-lg font-bold"
-                            placeholder="Mobile Number"
-                            value={localMobileNumber}
-                            onChange={(e) => (
-                                
-                                setLocalMobileNumber(e.target.value)
-                                // prefix +82
+                            <input
+                                type="number"
+                                className="w-[250px] h-[50px] rounded-md bg-black text-white text-lg font-bold"
+                                placeholder="Mobile Number"
+                                value={localMobileNumber}
+                                onChange={(e) => (
+                                    
+                                    setLocalMobileNumber(e.target.value)
+                                    // prefix +82
 
-                                //setMobileNumber("+82" + e.target.value)
+                                    //setMobileNumber("+82" + e.target.value)
 
-                            )}
-                        />
+                                )}
+                            />
+
+
+                        
                         </div>
 
-                        <div className="flex flex-row items-center justify-center gap-3">
+                        <div className='ml-10 flex flex-col items-center justify-center gap-3'>
+
+                            <div className='flex flex-row items-center justify-center gap-3'>
+                                {/* dot */}
+                                <span className="text-white text-lg font-bold">•</span>
+                                <span className="text-white text-sm font-bold">
+                                    주의사항: 구매한 USDT는 다음 지갑주소로 입금되며, 입금완료 후 10분 이내에 포인트로 전환됩니다.
+                                </span>
+                            </div>
+                            <span className="text-white text-sm font-bold">
+                                0x630a9a06d94B2Bae290211B3a2c2a4FA1FdDd002
+                            </span>
+                            <div className="flex flex-row items-center justify-center gap-3">
+                                <input
+                                    type="checkbox"
+                                    className="w-6 h-6"
+                                    checked={agreement}
+                                />
+                                <span className="text-white text-lg font-bold">
+                                    동의합니다.
+                                </span>
+                            </div>
+
+                        </div>
+
+
+
+                        <div className="mt-5 flex flex-row items-center justify-center gap-3">
 
                             <button
-                                disabled={krwAmount === 0 || localMobileNumber === ""}
+                                disabled={krwAmount === 0 || localMobileNumber === "" || !agreement}
                                 className={`flex items-center justify-center rounded-md bg-[#BA8E09] text-white text-lg font-bold h-[50px] w-[100px]
-                                    ${krwAmount === 0 || localMobileNumber === "" ? "opacity-50" : ""}`}
+                                    ${krwAmount === 0 || localMobileNumber === "" || !agreement ? "opacity-50" : ""}`}
                                 onClick={() => {
                                     setShowModal(false);
                                     getOrders();
