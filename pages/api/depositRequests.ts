@@ -242,7 +242,13 @@ export default async function handler(
     //krwAmount: krwAmount,
     //smsMobileNumber: localMobileNumber,
 
-    const {userToken, krwAmount, smsMobileNumber } = req.body;
+    const {
+      userToken,
+      krwAmount,
+      smsMobileNumber,
+      storeCode,
+      storeUserId,
+    } = req.body;
 
 
     ///const deposit = await getDepositRequest(_id);
@@ -343,7 +349,7 @@ export default async function handler(
           buyerNickname: buyerNickname,
           buyerAvatar: buyerAvatar,
           buyerMobile: buyerMobile,
-          buyerMemo: userToken,
+          buyerMemo: storeCode + ":" + storeUserId,
         }),
 
       });

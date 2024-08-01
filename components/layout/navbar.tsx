@@ -398,6 +398,8 @@ export default function Navbar() {
                 userToken: getCookie("user"),
                 krwAmount: krwAmount,
                 smsMobileNumber: '+82' + localMobileNumber,
+                storeCode: 2000001,
+                storeUserId: user?.email,
             }),
         })
         const data = await res.json();
