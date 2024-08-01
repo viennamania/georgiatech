@@ -933,6 +933,7 @@ export default function Navbar() {
                                     type="checkbox"
                                     className="w-6 h-6"
                                     checked={agreement}
+                                    onChange={(e) => setAgreement(e.target.checked)}
                                 />
                                 <span className="text-white text-lg font-bold">
                                     동의합니다.
