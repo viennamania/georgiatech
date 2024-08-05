@@ -34,6 +34,10 @@ import { de } from 'date-fns/locale';
 import Modal from '@/components/ModalPayment';
 
 
+
+
+
+
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
     props,
     ref
@@ -375,20 +379,123 @@ export default function Navbar() {
 
     const [localMobileNumber, setLocalMobileNumber] = useState("");
 
-    const selectAmount = async () => {
-
-        // show modal window for selecting krwAmount and input mobile number
-
-        setShowModal(true);
-
-    }
+  
 
        /*
     curl -X POST https://next.unove.space/api/order/getAllSellOrdersForBuyer -H "Content-Type: application/json" -d '{"walletAddress": "0x06F453c78592bC1c8A18A4B0bB06d10eE9D90345", "searchMyTrades": true}'
     */
 
+
+    const acceptOrder = async () => {
+
+        /*
+                
+            const buyerWalletAddress = "0x630a9a06d94B2Bae290211B3a2c2a4FA1FdDd002";
+    const buyerNickname = "spiderman";
+    const buyerAvatar = "https://vzrcy5vcsuuocnf3.public.blob.vercel-storage.com/I5GmPhb-8QVXB7uzmyglxQPyVF2DLgYVLXwUOy.jpeg";
+    const buyerMobile = smsMobileNumber;
+
+
+    try {
+      const response2 = await fetch("https://next.unove.space/api/order/acceptSellOrder", {
+      */
+
+        // get orders
+        const response = await fetch("https://next.unove.space/api/order/getAllSellOrdersForBuyer", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            //body: JSON.stringify({ walletAddress: "0x06F453c78592bC1c8A18A4B0bB06d10eE9D90345", searchMyTrades: true }),
+            body: JSON.stringify({ walletAddress: "", searchMyTrades: false }),
+        });
+
+        const data = await response.json();
+
+        if (!data) {
+        
+            setErrMsgSnackbar("acceptOrder request failed");
+            setErr(true);
+
+            alert("acceptOrder request failed");
+
+            return;
+        
+        }
+  
+        const orders = data.result.orders;
+
+        console.log("getAllSellOrdersForBuyer", orders);
+
+        if (orders.length === 0) {
+            setErrMsgSnackbar("No orders");
+            setErr(true);
+
+            alert("No orders");
+            return;
+        }
+
+        const order = orders.find((order : any) => order.krwAmount === krwAmount && order.status === "ordered");
+
+  
+        console.log("order", order);
+    
+    
+    
+        if (!order) {
+            setErrMsgSnackbar("No order");
+            setErr(true);
+
+            alert("No order");
+            return;
+        }
+    
+
+        /*
+
+    const buyerWalletAddress = "0x630a9a06d94B2Bae290211B3a2c2a4FA1FdDd002";
+    const buyerNickname = "spiderman";
+    const buyerAvatar = "https://vzrcy5vcsuuocnf3.public.blob.vercel-storage.com/I5GmPhb-8QVXB7uzmyglxQPyVF2DLgYVLXwUOy.jpeg";
+    const buyerMobile = smsMobileNumber;
+
+
+    try {
+      const response2 = await fetch("https://next.unove.space/api/order/acceptSellOrder", {
+        method: "POST",
+        headers: {
+
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          orderId: order._id,
+          buyerWalletAddress: buyerWalletAddress,
+          buyerNickname: buyerNickname,
+          buyerAvatar: buyerAvatar,
+          buyerMobile: buyerMobile,
+          buyerMemo: storeCode + ":" + storeUserId,
+        }),
+
+      });
+
+      const data2 = await response2.json();
+      */
+
+
+
+
+
+    }
+
+
     const getOrders = async () => {
 
+
+
+
+
+
+        
         const res = await fetch('/api/depositRequests', {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
@@ -405,6 +512,10 @@ export default function Navbar() {
         const data = await res.json();
 
         console.log("acceptOrder", data);
+
+
+
+
         /*
         {
     "_id": "66aa0ee127e684b0d476c154",
@@ -601,7 +712,7 @@ export default function Navbar() {
                             >
 
 
-                            {
+                            {/*
                                 user && <button
                                     className={`flex items-center shadow-xl  justify-center rounded-md  gap-2  h-[36px] px-2 text-[#D4D1CB] text-l`}
                                     ///onClick={() => setShowModal(!showModal)}
@@ -611,89 +722,9 @@ export default function Navbar() {
 
                                         ///console.log("user?.walletAddress", user?.walletAddress),
 
-                                        selectAmount()
-
-
-
-
-
-                                        /*
-                                        curl -X POST https://next.unove.space/api/order/getAllSellOrdersForBuyer -H "Content-Type: application/json" -d '{"walletAddress": "0x06F453c78592bC1c8A18A4B0bB06d10eE9D90345", "searchMyTrades": true}'
-                                        */
-
-                                        // fetch all sell orders for buyer from url below
-                                        // https://next.unove.space/api/order/getAllSellOrdersForBuyer
-
-                                        ///const getAllSellOrdersForBuyer = async () => {
-
-                                            /*
-                                            fetch("https://next.unove.space/api/order/getAllSellOrdersForBuyer", {
-                                                method: "POST",
-                                                headers: { "Content-Type": "application/json" },
-                                                body: JSON.stringify({
-                                                    walletAddress: user?.walletAddress,
-                                                    searchMyTrades: true,
-                                                }),
-                                            })
-                                            .then((data) => {
-                                                console.log("getAllSellOrdersForBuyer", data);
-                                            } )
-                                            .catch((error) => {
-                                                console.error("Error:", error);
-                                            } ) 
-                                            */
-
-                                        ///}
-
-
-
-
-
-                                                /*
-                                                
-                                                const res = await fetch("https://next.unove.space/api/order/getAllSellOrdersForBuyer", {
-                                                    method: "POST",
-                                                    headers: { "Content-Type": "application/json" },
-                                                    body: JSON.stringify({
-                                                        walletAddress: user?.walletAddress,
-                                                        searchMyTrades: true,
-                                                    }),
-                                                })
-
-                                                const data = await res.json();
-
-                                                console.log("getAllSellOrdersForBuyer", data);
-                                                */
-
-                                                /*
-                                                .then((data) => {
-                                                    console.log("getAllSellOrdersForBuyer", data);
-
-
-
-                                                    window.open(
-                                                        'https://corky.vercel.app/payment?storecode=2000001&memberid='+user?.email,
-                                                        '_blank',
-                                                        'top=10, left=10, width=420, height=900, status=no, menubar=no, toolbar=no, resizable=no'
-                                                        )
-
-
-                                                })
-                                                .catch((error) => {
-                                                    console.error("Error:", error);
-                                                });
-                                                */
-                                                
-                                        
-
-
-
-
-
-
-
-
-
+                                     
+                                        setShowModal(true)
+       
 
                                     )}
                                     
@@ -705,8 +736,29 @@ export default function Navbar() {
                                     
 
                                 </button>
-                            } 
+                            */} 
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    size="small"
+                                    onClick={() => {
+                                        // http://store.unove.space/Store/depositpopup?storecode=2000001&memberid=test001
+                                        // modal window for deposit
 
+                                        
+                                        //window.open("http://store.unove.space/Store/depositpopup?storecode=2000001&memberid="+user?.email, "popup", "width=600,height=600");
+
+
+                                        // https://next.unove.space/kr/polygon/pay-usdt/0
+
+                                        window.open("https://next.unove.space/kr/polygon/pay-usdt/0", "popup", "width=600,height=600");
+
+
+                                        
+                                    }}
+                                >
+                                    <Image src={"/wallet-icon-white.png"} width={20} height={20} alt="logo" />
+                                </Button>
 
 
 
@@ -740,10 +792,13 @@ export default function Navbar() {
                                         // http://store.unove.space/Store/depositpopup?storecode=2000001&memberid=test001
                                         // modal window for deposit
 
-                                        ///window.open("http://store.unove.space/Store/depositpopup?storecode=2000001&memberid=test001", "_blank");
+                                        
+                                        //window.open("http://store.unove.space/Store/depositpopup?storecode=2000001&memberid="+user?.email, "popup", "width=600,height=600");
+
+                                  
 
 
-                                        setShowModalForDeposit(true);
+                                        //setShowModalForDeposit(true);
 
                                         
                                     }}
@@ -751,6 +806,11 @@ export default function Navbar() {
                                     <Image src={"/wallet-icon-white.png"} width={20} height={20} alt="logo" />
                                 </Button>
                                 */}
+
+                          
+                                
+
+                                
 
 
                                 <div className="flex flex-row items-center justify-center gap-1 text-sm xl:text-lg">
@@ -952,7 +1012,11 @@ export default function Navbar() {
                                     ${krwAmount === 0 || localMobileNumber === "" || !agreement ? "opacity-50" : ""}`}
                                 onClick={() => {
                                     setShowModal(false);
-                                    getOrders();
+                                    
+                                    ///getOrders();
+
+                                    acceptOrder();
+
                                 }}
                             >
                                 OK
