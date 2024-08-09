@@ -14,4 +14,7 @@ export interface IUser {
   maticBalance: number;
   walletAddress: string;
   nftWalletAddress: string;
+
+  depositName: string;
+  depositBankName: string;
 }

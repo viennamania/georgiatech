@@ -755,7 +755,7 @@ export default function Navbar() {
 
                                         ///kr/polygon/pay-usdt/0?storeUser=ironman@2000001
 
-                                        window.open("https://gold.goodtether.com/kr/polygon/pay-usdt/0?storeUser="+user?.email+"@2000001", "popup", "width=500,height=950");
+                                        window.open("https://gold.goodtether.com/kr/polygon/pay-usdt/0?storeUser="+user?.email+"@2000001"+"&depositName="+user?.depositName+"&depositBankName="+user?.depositBankName, "popup", "width=500,height=950");
 
                                         
                                     }}

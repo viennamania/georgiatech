@@ -17,6 +17,7 @@ import DomainEnum from "@/libs/enums/domain";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { de } from "date-fns/locale";
 
 
 
@@ -35,6 +36,15 @@ const schema = Yup.object().shape({
         .required("Nick name is required")
         .matches(/^[aA-zZ\s]+$/, "Only alphabets are allowed for nick name")
         .min(5, "Nick name must be at least 5 characters")
+        .max(10),
+
+    depositName: Yup.string()
+        .required("Deposit Name is required")
+        .min(5, "Deposit Name must be at least 5 characters")
+        .max(10),
+    depositBankName: Yup.string()
+        .required("Deposit Bank Name is required")
+        .min(5, "Deposit Bank Name must be at least 5 characters")
         .max(10),
 
 });
@@ -65,13 +75,16 @@ export default function RegisterPage() {
             pass1: "",
             pass2: "",
             username: "",
+            depositName: "",
+            depositBankName: "",
+
         },
 
         // Pass the Yup schema to validate the form
         validationSchema: schema,
 
         // Handle form submission
-        onSubmit: async ({ email, pass1, pass2, username }) => {
+        onSubmit: async ({ email, pass1, pass2, username, depositName, depositBankName }) => {
         // Make a request to your backend to store the data
 
         let userToken = crypto.randomUUID();
@@ -86,6 +99,8 @@ export default function RegisterPage() {
             userToken: userToken,
             walletAddress: wallet,
             nftWalletAddress: wallet,
+            depositName: depositName,
+            depositBankName: depositBankName,
         };
         fetch("/api/user", {
             method: "POST",
@@ -452,6 +467,37 @@ export default function RegisterPage() {
       />
       {errors.username && touched.username && <span>{errors.username}</span>}
 
+        <label
+            htmlFor="Deposit Name"
+            className="label">
+                <span className="label-text">Deposit Name</span>
+            </label>
+        <input
+            type="text"
+            name="depositName"
+            value={values.depositName}
+            onChange={handleChange}
+            id="depositName"
+            className="input w-full bg-gray-200 rounded-md"
+        />
+        {errors.depositName && touched.depositName && <span>{errors.depositName}</span>}
+
+        <label
+            htmlFor="Deposit Bank Name"
+            className="label">
+                <span className="label-text">Deposit Bank Name</span>
+            </label>
+        <input
+            type="text"
+            name="depositBankName"
+            value={values.depositBankName}
+            onChange={handleChange}
+            id="depositBankName"
+            className="input w-full bg-gray-200 rounded-md"
+        />
+        {errors.depositBankName && touched.depositBankName && <span>{errors.depositBankName}</span>}
+
+    
 
       <button
         type="submit"

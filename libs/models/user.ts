@@ -2,6 +2,7 @@ import { IUser } from "./../interface/user";
 import { model, models, Schema } from "mongoose";
 import connectMongo from "../services/database";
 import Coin from "../enums/coin.enum";
+import { de } from "date-fns/locale";
 
 connectMongo();
 
@@ -75,6 +76,16 @@ const UserSchema = new Schema({
     type: Boolean,
     default: true,
   },
+  depositName: {
+    type: String,
+    required: false,
+    default: "",
+  },
+  depositBankName: {
+    type: String,
+    required: false,
+    default: "",
+  },
 });
 
 export const User = models.User || model("User", UserSchema);
@@ -111,7 +122,9 @@ export const newUser = async (
   pass2: string,
   userToken: string,
   ////walletAddress: string,
-  nftWalletAddress: string
+  nftWalletAddress: string,
+  depositName: string,
+  depositBankName: string,
 ) => {
   
   const checkUserByEmail = await User.find({ email: email });
@@ -137,7 +150,9 @@ export const newUser = async (
     userToken: userToken,
     ////walletAddress: walletAddress,
     nftWalletAddress: nftWalletAddress,
-    img: "/profile_default.gif"
+    img: "/profile_default.gif",
+    depositName: depositName,
+    depositBankName: depositBankName,
   });
   
   return await user.save();
