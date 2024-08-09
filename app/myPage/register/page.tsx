@@ -40,12 +40,14 @@ const schema = Yup.object().shape({
 
     depositName: Yup.string()
         .required("Deposit Name is required")
-        .min(5, "Deposit Name must be at least 5 characters")
-        .max(10),
+        //.min(5, "Deposit Name must be at least 5 characters")
+        //.max(10)
+        ,
     depositBankName: Yup.string()
         .required("Deposit Bank Name is required")
-        .min(5, "Deposit Bank Name must be at least 5 characters")
-        .max(10),
+        //.min(5, "Deposit Bank Name must be at least 5 characters")
+        //.max(10)
+        ,
 
 });
 
