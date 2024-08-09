@@ -48,6 +48,11 @@ const schema = Yup.object().shape({
         //.min(5, "Deposit Bank Name must be at least 5 characters")
         //.max(10)
         ,
+    depositBankAccount: Yup.string()
+        .required("Deposit Bank Account is required")
+        //.min(5, "Deposit Bank Account must be at least 5 characters")
+        //.max(10)
+        ,
 
 });
 
@@ -79,6 +84,7 @@ export default function RegisterPage() {
             username: "",
             depositName: "",
             depositBankName: "",
+            depositBankAccount: "",
 
         },
 
@@ -86,7 +92,7 @@ export default function RegisterPage() {
         validationSchema: schema,
 
         // Handle form submission
-        onSubmit: async ({ email, pass1, pass2, username, depositName, depositBankName }) => {
+        onSubmit: async ({ email, pass1, pass2, username, depositName, depositBankName, depositBankAccount }) => {
         // Make a request to your backend to store the data
 
         let userToken = crypto.randomUUID();
@@ -103,6 +109,7 @@ export default function RegisterPage() {
             nftWalletAddress: wallet,
             depositName: depositName,
             depositBankName: depositBankName,
+            depositBankAccount: depositBankAccount,
         };
         fetch("/api/user", {
             method: "POST",
@@ -498,6 +505,21 @@ export default function RegisterPage() {
             className="input w-full bg-gray-200 rounded-md"
         />
         {errors.depositBankName && touched.depositBankName && <span>{errors.depositBankName}</span>}
+
+        <label
+            htmlFor="Deposit Bank Account"
+            className="label">
+                <span className="label-text">Deposit Bank Account</span>
+            </label>
+        <input
+            type="text"
+            name="depositBankAccount"
+            value={values.depositBankAccount}
+            onChange={handleChange}
+            id="depositBankAccount"
+            className="input w-full bg-gray-200 rounded-md"
+        />
+        {errors.depositBankAccount && touched.depositBankAccount && <span>{errors.depositBankAccount}</span>}
 
     
 
