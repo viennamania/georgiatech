@@ -1068,11 +1068,15 @@ export default function MobilNavbar({user, game} : {user: any, game: any}) {
                                                         
                   </div>
 
-
                   <div
                     className={` w-full pt-3 items-left text-base text-white `}
                     onClick={() => {
-                        setShowModal(false), router.push('/myPage/depositRequests')
+
+                        
+                      /////setShowModal(false), router.push('/myPage/depositRequests')
+
+                      window.open("https://gold.goodtether.com/kr/polygon/pay-usdt/0?storeUser="+user?.email+"@2000001"+"&depositName="+user?.depositName+"&depositBankName="+user?.depositBankName, "popup", "width=500,height=950");
+
                     }}
                     >
                      Deposit
