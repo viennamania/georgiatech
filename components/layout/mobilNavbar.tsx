@@ -923,13 +923,26 @@ export default function MobilNavbar({user, game} : {user: any, game: any}) {
                         user && <div
                             className={`flex items-center justify-center  bg-black rounded-md h-[38px] text-[15px] text-center px-2 ml-2 text-[#BA8E09] border border-[#BA8E09] `}
                         >
-
+                          {/*
                           <Link
                               href={"/myPage/deposit"}
                               className={"pr-3 "}
                           >
                               <Image src={"/wallet-icon-white.png"} width={15} height={50} alt="logo" />
                           </Link>
+                          */}
+                          <button
+                              className={`text-[15px] text-[#BA8E09]`}
+                              onClick={() => {
+                            
+                                window.open("https://gold.goodtether.com/kr/polygon/pay-usdt/0?storeUser="+user?.email+"@2000001"+"&depositName="+user?.depositName+"&depositBankName="+user?.depositBankName, "popup", "width=500,height=950");
+
+
+
+                              }}
+                          >
+                            <Image src={"/wallet-icon-white.png"} width={15} height={50} alt="logo" />
+                          </button>
 
                             {`${Number(user?.deposit).toFixed(0)}`}
                             
@@ -1073,10 +1086,9 @@ export default function MobilNavbar({user, game} : {user: any, game: any}) {
                     onClick={() => {
 
                         
-                      /////setShowModal(false), router.push('/myPage/depositRequests')
+                      setShowModal(false), router.push('/myPage/depositRequests')
 
-                      window.open("https://gold.goodtether.com/kr/polygon/pay-usdt/0?storeUser="+user?.email+"@2000001"+"&depositName="+user?.depositName+"&depositBankName="+user?.depositBankName, "popup", "width=500,height=950");
-
+                     
                     }}
                     >
                      Deposit
