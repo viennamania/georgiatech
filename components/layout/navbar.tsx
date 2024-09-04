@@ -624,6 +624,43 @@ export default function Navbar() {
     const [agreement, setAgreement] = useState(false);
 
 
+    const [popupWindow, setPopupWindow] = useState<any>();
+
+
+    const openPopup = () => {
+
+        const popup = window.open("https://gold.goodtether.com/kr/polygon/pay-usdt/0?storeUser="+user?.email+"@2000001"+"&depositName="+user?.depositName+"&depositBankName="+user?.depositBankName, "popup", "width=500,height=950");
+
+        setPopupWindow(popup);
+
+        /*
+        // // 주기적으로 팝업 윈도우에 focus
+        setInterval(() => {
+            if (popup) {
+                popup.focus();
+            }
+        } , 1000);
+        */
+
+    }
+
+
+    useEffect(() => {
+            
+        if (popupWindow) {
+            // // 주기적으로 팝업 윈도우에 focus
+            setInterval(() => {
+                if (popupWindow) {
+                    popupWindow.focus();
+                }
+            } , 1000);
+        }
+
+    }, [popupWindow]);
+
+
+
+
     return (
         <>
             {/* //? LG Screen üstü görüntü */}
@@ -737,6 +774,21 @@ export default function Navbar() {
 
                                 </button>
                             */} 
+
+
+{/*
+function bringToFront(popup) {
+  if (popup && !popup.closed) {
+    popup.focus(); // 팝업 창을 포커스하여 최상위로 이동시킵니다.
+  }
+}
+
+const popup = window.open('/popup-page', 'popupWindow', 'width=600,height=400,left=100,top=100');
+// 일정 주기로 팝업을 최상위로 이동시키기 위한 반복 작업
+setInterval(() => bringToFront(popup), 1000); // 1초마다 팝업을 최상위로 이동
+*/}
+
+
                                 <Button
                                     variant="contained"
                                     color="primary"
@@ -755,8 +807,18 @@ export default function Navbar() {
 
                                         ///kr/polygon/pay-usdt/0?storeUser=ironman@2000001
 
-                                        window.open("https://gold.goodtether.com/kr/polygon/pay-usdt/0?storeUser="+user?.email+"@2000001"+"&depositName="+user?.depositName+"&depositBankName="+user?.depositBankName, "popup", "width=500,height=950");
+                                        /*
+                                        const popup = window.open("https://gold.goodtether.com/kr/polygon/pay-usdt/0?storeUser="+user?.email+"@2000001"+"&depositName="+user?.depositName+"&depositBankName="+user?.depositBankName, "popup", "width=500,height=950");
 
+                                        // // 주기적으로 팝업 윈도우에 focus
+                                        setInterval(() => {
+                                            if (popup) {
+                                                popup.focus();
+                                            }
+                                        } , 1000);
+                                        */
+
+                                        openPopup();
                                         
                                     }}
                                 >
