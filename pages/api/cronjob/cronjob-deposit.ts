@@ -4,6 +4,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import {
     makeWinDepositCoinByEmail,
 } from "@/libs/models/user";
+import { parse } from 'path';
 
 
 export default async function handler(
@@ -13,7 +14,7 @@ export default async function handler(
 
     // fetch
     // https://store.unove.space/api/storeSettlementHistory?store_code=2000001
-    // {"result":1,"txid":"0x251ecc699e0470d4d1bd777b81cb10f0536ffbba402bdec0d04938e50109236a","regist_date":"2024-10-08 01:09:22","member_id":"helloworld@gmail.com","eth_php_finish":"2548.8"}
+    // {"result":1,"txid":"0x5c92b10f59b06aaf55f3f46a23ca6056de84dd1f321afc8732552d768d07103c","regist_date":"2024-10-10 01:39:31","member_id":"tiramisu@gmail.com","eth_php_finish":"858.006","eth_php_user":"1350"}
 
     const result = await fetch('https://store.unove.space/api/storeSettlementHistory?store_code=2000001');
     
@@ -25,7 +26,7 @@ export default async function handler(
 
     console.log(data);
 
-    const { txid, regist_date, member_id, eth_php_finish } = data;
+    const { txid, regist_date, member_id, eth_php_finish, eth_php_user } = data;
 
     // save to database
     /*
@@ -36,7 +37,9 @@ export default async function handler(
     return res.status(400).json({ message: "Action Failed" });
     */
 
-    const updatedUser = await makeWinDepositCoinByEmail(member_id, eth_php_finish, txid);
+    const amount = parseFloat(eth_php_finish);
+
+    const updatedUser = await makeWinDepositCoinByEmail(member_id, amount, txid);
     if (updatedUser.success) {
         return res.status(200).json({ message: "Success", updatedUser });
     }
