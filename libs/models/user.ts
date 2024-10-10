@@ -339,6 +339,12 @@ export const makeDepositCoin = async (userToken: string, amount: number) => {
   return { success: true, user };
 };
 
+
+
+
+
+
+
 export const makeWinDepositCoin = async (userToken: string, amount: number) => {
   const user = await User.findOne({ userToken: userToken });
   if (!user) {
@@ -348,6 +354,33 @@ export const makeWinDepositCoin = async (userToken: string, amount: number) => {
   await user.save();
   return { success: true, user };
 };
+
+
+
+
+export const makeWinDepositCoinByEmail = async (email: string, amount: number, txid: string) => {
+  const user = await User.findOne({ email: email });
+  if (!user) {
+    return { success: false, message: "User not found" };
+  }
+  
+  if (user?.txid === txid) {
+    return { success: false, message: "Transaction already exists" };
+  }
+
+  
+  user.deposit += amount;
+
+  user.txid = txid;
+
+  await user.save();
+  
+  return { success: true, user };
+};
+
+
+
+
 
 export const swapToMatic = async (userToken: string, amount: number) => {
   const user = await User.findOne({ userToken: userToken });
