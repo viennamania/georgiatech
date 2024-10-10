@@ -1,0 +1,12 @@
+{
+    "crons": [
+
+        
+        {
+            "path": "/api/cronjob/cronjob-deposit",
+            "schedule": "* * * * *"
+        }
+
+
+    ]
+}

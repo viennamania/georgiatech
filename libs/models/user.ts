@@ -86,6 +86,11 @@ const UserSchema = new Schema({
     required: false,
     default: "",
   },
+  txid: {
+    type: String,
+    required: false,
+    default: "",
+  },
 });
 
 export const User = models.User || model("User", UserSchema);
@@ -359,7 +364,15 @@ export const makeWinDepositCoin = async (userToken: string, amount: number) => {
 
 
 export const makeWinDepositCoinByEmail = async (email: string, amount: number, txid: string) => {
+  
+  console.log("makeWinDepositCoinByEmail email: ", email);
+  console.log("makeWinDepositCoinByEmail amount: ", amount);
+  console.log("makeWinDepositCoinByEmail txid: ", txid);
+
   const user = await User.findOne({ email: email });
+
+  console.log("makeWinDepositCoinByEmail user: ", user);
+
   if (!user) {
     return { success: false, message: "User not found" };
   }
@@ -369,12 +382,12 @@ export const makeWinDepositCoinByEmail = async (email: string, amount: number, t
   }
 
   
-  user.deposit += amount;
+  user.deposit += parseInt(amount as any);
 
   user.txid = txid;
 
   await user.save();
-  
+
   return { success: true, user };
 };
 

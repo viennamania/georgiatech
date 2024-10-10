@@ -18,4 +18,6 @@ export interface IUser {
   depositName: string;
   depositBankName: string;
   depositBankAccount: string;
+
+  txid: string;
 }
